@@ -7,6 +7,8 @@ import { HttpClientModule } from '@angular/common/http';
 import { RouterModule } from '@angular/router';
 import { CoreModule } from './core/core.module';
 import { MenuComponent } from './core/menu/menu.component';
+import { HomeModule } from './home/home.module';
+import { PoTemplatesModule } from '@po-ui/ng-templates';
 
 @NgModule({
   declarations: [
@@ -17,8 +19,10 @@ import { MenuComponent } from './core/menu/menu.component';
     PoModule,
     HttpClientModule,
     CoreModule,
+    HomeModule,
     
-    RouterModule.forRoot([])
+    RouterModule.forRoot([]),
+         PoTemplatesModule
   ],
   exports:[
     MenuComponent
