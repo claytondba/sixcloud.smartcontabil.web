@@ -11,6 +11,8 @@ import jwt_decode from 'jwt-decode';
 export class UserService {
 
   private userSubject = new BehaviorSubject<User | null>(null);
+  private userLogged = new BehaviorSubject<boolean>(false);
+
   constructor(private tokenService: TokenService){
 
     if(this.tokenService.hasToken())
@@ -35,6 +37,7 @@ export class UserService {
     const token: string = this.tokenService.getToken();
     const user = jwt_decode(token) as User;
     this.userSubject.next(user);
+    this.userLogged.next(true);
 
   }
 
@@ -47,6 +50,10 @@ export class UserService {
 
   isLogged() {
     return this.tokenService.hasToken();
+  }
+
+  get isLoggedIn() {
+    return this.userLogged.asObservable();
   }
 
 }

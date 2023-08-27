@@ -17,7 +17,7 @@ import { NotLoggedGuard } from './core/auth/not-logged.guard';
 
 const routes: Routes = [
   {
-    path: 'login',
+    path: '',
     component: LoginComponent,
     canActivate: [LoginGuard]
   },
