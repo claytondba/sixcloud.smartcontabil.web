@@ -4,6 +4,7 @@ import { PoModule } from "@po-ui/ng-components";
 import { CommonModule } from "@angular/common";
 import { LoginModule } from "./login/login.module";
 import { StatusRpaModule } from "./staus-rpa/staus-rpa.module";
+import { DashModule } from "./dash/dash.module";
 
 @NgModule({
     declarations:[
@@ -11,7 +12,8 @@ import { StatusRpaModule } from "./staus-rpa/staus-rpa.module";
     ],
     imports:[
         LoginModule,
-        StatusRpaModule
+        StatusRpaModule, 
+        DashModule
     ],
     exports:[
         

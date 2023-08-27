@@ -11,6 +11,7 @@ import { HomeModule } from './home/home.module';
 import { PoTemplatesModule } from '@po-ui/ng-templates';
 import { LoginComponent } from './home/login/login.component';
 import { StatusRpaComponent } from './home/staus-rpa/status-rpa.component';
+import { DashComponent } from './home/dash/dash.component';
 
 const routes: Routes = [
   {
@@ -23,7 +24,7 @@ const routes: Routes = [
   },
   {
     path: 'home',
-    component: DashComp
+    component: DashComponent
   }
 ];
 
