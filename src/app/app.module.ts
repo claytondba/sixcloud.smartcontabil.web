@@ -14,12 +14,18 @@ import { StatusRpaComponent } from './home/staus-rpa/status-rpa.component';
 import { DashComponent } from './home/dash/dash.component';
 import { LoginGuard } from './core/auth/login.guard';
 import { NotLoggedGuard } from './core/auth/not-logged.guard';
+import { EmpresasComponent } from './home/empresas/empresas.component';
 
 const routes: Routes = [
   {
     path: '',
     component: LoginComponent,
     canActivate: [LoginGuard]
+  },
+  {
+    path: 'empresas',
+    component: EmpresasComponent,
+    canActivate: [NotLoggedGuard]
   },
   {
     path: 'status',
