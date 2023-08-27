@@ -4,11 +4,28 @@ import { BrowserModule } from '@angular/platform-browser';
 import { AppComponent } from './app.component';
 import { PoModule } from '@po-ui/ng-components';
 import { HttpClientModule } from '@angular/common/http';
-import { RouterModule } from '@angular/router';
+import { RouterModule, Routes } from '@angular/router';
 import { CoreModule } from './core/core.module';
 import { MenuComponent } from './core/menu/menu.component';
 import { HomeModule } from './home/home.module';
 import { PoTemplatesModule } from '@po-ui/ng-templates';
+import { LoginComponent } from './home/login/login.component';
+import { StatusRpaComponent } from './home/staus-rpa/status-rpa.component';
+
+const routes: Routes = [
+  {
+    path: 'login',
+    component: LoginComponent
+  },
+  {
+    path: 'status',
+    component: StatusRpaComponent
+  },
+  {
+    path: 'home',
+    component: DashComp
+  }
+];
 
 @NgModule({
   declarations: [
@@ -21,10 +38,11 @@ import { PoTemplatesModule } from '@po-ui/ng-templates';
     CoreModule,
     HomeModule,
     
-    RouterModule.forRoot([]),
+    RouterModule.forRoot(routes, {useHash:true}),
          PoTemplatesModule
   ],
   exports:[
+    RouterModule,
     MenuComponent
   ],
   providers: [],
