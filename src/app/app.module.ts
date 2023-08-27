@@ -12,19 +12,24 @@ import { PoTemplatesModule } from '@po-ui/ng-templates';
 import { LoginComponent } from './home/login/login.component';
 import { StatusRpaComponent } from './home/staus-rpa/status-rpa.component';
 import { DashComponent } from './home/dash/dash.component';
+import { LoginGuard } from './core/auth/login.guard';
+import { NotLoggedGuard } from './core/auth/not-logged.guard';
 
 const routes: Routes = [
   {
     path: 'login',
-    component: LoginComponent
+    component: LoginComponent,
+    canActivate: [LoginGuard]
   },
   {
     path: 'status',
-    component: StatusRpaComponent
+    component: StatusRpaComponent,
+    canActivate: [NotLoggedGuard]
   },
   {
     path: 'home',
-    component: DashComponent
+    component: DashComponent,
+    canActivate: [NotLoggedGuard]
   }
 ];
 
