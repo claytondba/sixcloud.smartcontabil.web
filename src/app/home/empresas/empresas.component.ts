@@ -11,7 +11,7 @@ export class EmpresasComponent {
 
     @ViewChild('empresaDetailModal') empresaDetailModal!: PoModalComponent;
 
-    readonly serviceApi = 'https://localhost:7109/Empresas/EmpresasUI';
+    readonly serviceApi = 'https://rpa.devplus.com.br/Empresas/EmpresasUI';
     detailedEmpresa: any;
     
     readonly breadcrumb: PoBreadcrumb = {
@@ -33,7 +33,6 @@ export class EmpresasComponent {
       { property: 'tel', label: 'Tel' },
       { property: 'contato', label: 'Contato'},
       { property: 'smart_cnd', label: 'Certidão Federal (103)', divider: 'Processamento RPA CNDs' },
-      { property: 'smart_cnd', label: 'Certidão Federal (103)'}
     ];
   
 

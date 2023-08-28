@@ -11,12 +11,15 @@ import { AuthService } from "src/app/core/auth/auth.service";
 })
 export class LoginComponent {
 
+  loading: boolean = false;
+
     constructor(private poDialog: PoDialogService,
         private authService: AuthService,
         private router: Router) {}
 
     loginSubmit(formData: PoPageLogin) {
 
+        this.loading = true;
         this.authService
         .authenticate(formData.login, formData.password)
         .subscribe(() => {
@@ -25,6 +28,7 @@ export class LoginComponent {
         },
           err => {
             console.log(err);
+            this.loading = false;
           })
       }
 

@@ -16,12 +16,18 @@ import { LoginGuard } from './core/auth/login.guard';
 import { NotLoggedGuard } from './core/auth/not-logged.guard';
 import { EmpresasComponent } from './home/empresas/empresas.component';
 import { EmpresaEditComponent } from './home/empresas/empresa-edit/empresa-edit.component';
+import { CertidaoComponent } from './home/certidoes/certidao.component';
 
 const routes: Routes = [
   {
     path: '',
     component: LoginComponent,
     canActivate: [LoginGuard]
+  },
+  {
+    path: 'certidoes',
+    component: CertidaoComponent,
+    canActivate: [NotLoggedGuard]
   },
   {
     path: 'empresas',

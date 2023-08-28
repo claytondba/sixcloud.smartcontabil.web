@@ -3,11 +3,13 @@ import { Injectable } from "@angular/core";
 import { Router } from "@angular/router";
 import { catchError, map, Observable, throwError } from "rxjs";
 import { TokenService } from "../token/token.service";
+import { UserService } from "../user/user.service";
 
 @Injectable()
 export class RequestInterceptor implements HttpInterceptor{
 
   constructor (private tokenService: TokenService,
+               private userService: UserService,
                private router: Router) {
 
 
@@ -29,6 +31,7 @@ export class RequestInterceptor implements HttpInterceptor{
       if(error.status == 401)
       {
           this.tokenService.removeToken();
+          this.userService.logout();
           this.router.navigate(['/']);
           return error;
       }
