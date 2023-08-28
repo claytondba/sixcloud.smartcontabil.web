@@ -1,5 +1,6 @@
 import { Component } from "@angular/core";
 import { PoBreadcrumb } from "@po-ui/ng-components";
+import { PoPageDynamicTableActions, PoPageDynamicTableCustomTableAction } from "@po-ui/ng-templates";
 
 @Component({
     selector: 'sixcloud-certidao',
@@ -24,5 +25,26 @@ export class CertidaoComponent {
         { property: 'tempo', label: 'Tempo (Seg)' },
         { property: 'instance_name', label: 'RPA' }
       ];
-  
+      readonly actions: PoPageDynamicTableActions = {
+        removeAll: true,
+        //edit: '/empresa-edit/:id'
+    
+    };
+    tableCustomActions: Array<PoPageDynamicTableCustomTableAction> = [
+        {
+          label: 'Visualizar',
+          icon: 'po-icon po-icon-eye'
+          //action: this.onClickEmpresaDetail.bind(this),
+        },
+        {
+            label: 'Reprocessar',
+            icon: 'po-icon-settings'
+            //action: this.onClickEmpresaDetail.bind(this),
+        },
+        {
+            label: 'Download',
+            icon: 'po-icon-download'
+            //action: this.onClickEmpresaDetail.bind(this),
+        },
+      ];
 }

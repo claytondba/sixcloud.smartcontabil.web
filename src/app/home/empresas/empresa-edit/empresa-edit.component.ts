@@ -12,9 +12,10 @@ export class EmpresaEditComponent{
     public readonly serviceApi = 'https://localhost:7109/Empresas';
 
     public readonly fields: Array<PoDynamicFormField> = [
-        { property: 'razao', label: 'Razão Social', divider: 'Dados Gerais', gridColumns: 6, required: true },
+        { property: 'id', label: 'ID', divider: 'Dados Gerais', disabled: true, gridColumns: 2},
+        { property: 'razao', label: 'Razão Social', gridColumns: 6, required: true },
+        { property: 'cnpj', label: 'CNPJ', mask: '99.999.999/9999-99', gridColumns: 4, required: true },
         { property: 'fantasia', label: 'Nome Fantasia', gridColumns: 6, required: true },
-        { property: 'cnpj', label: 'CNPJ', mask: '99.999.999/9999-99', required: true },
         { property: 'tel', mask: '(99) 99999-9999', label: 'Tel' },
         { property: 'contato', label: 'Contato'},
 
