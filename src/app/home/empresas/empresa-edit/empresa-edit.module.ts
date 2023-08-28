@@ -1,7 +1,7 @@
 import { NgModule } from "@angular/core";
 import { EmpresaEditComponent } from "./empresa-edit.component";
 import { CommonModule } from "@angular/common";
-import { PoModule } from "@po-ui/ng-components";
+import { PoDynamicViewField, PoModule } from "@po-ui/ng-components";
 import { PoPageDynamicEditModule, PoPageDynamicTableModule } from "@po-ui/ng-templates";
 
 @NgModule({
@@ -13,4 +13,15 @@ import { PoPageDynamicEditModule, PoPageDynamicTableModule } from "@po-ui/ng-tem
         PoPageDynamicEditModule
     ]
 })
-export class EmpresaEditModule { }
+export class EmpresaEditModule {
+
+    readonly detailFields: Array<PoDynamicViewField> = [
+        { property: 'razao', label: 'Razão Social', divider: 'Dados Gerais', gridColumns: 6},
+        { property: 'fatasia', label: 'Nome Fantasia', gridColumns: 6},
+        { property: 'cnpj', label: 'CNPJ'},
+        { property: 'tel', label: 'Tel' },
+        { property: 'contato', label: 'Contato'},
+      ];
+  
+
+ }

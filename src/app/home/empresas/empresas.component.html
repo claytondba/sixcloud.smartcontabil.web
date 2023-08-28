@@ -2,7 +2,7 @@
 [p-concat-filters]="true"
 p-title="Cadastro de Empresas"
 [p-actions]="actions"
-
+[p-table-custom-actions]="tableCustomActions"
 [p-breadcrumb]="breadcrumb"
 [p-concat-filters]="true"
 [p-infinite-scroll]="true"
@@ -10,3 +10,7 @@ p-title="Cadastro de Empresas"
 [p-service-api]="serviceApi">
 
 </po-page-dynamic-table>
+
+<po-modal #empresaDetailModal p-title="Detalhes - Empresa">
+    <po-dynamic-view [p-fields]="detailFields" [p-value]="detailedEmpresa"> </po-dynamic-view>
+</po-modal>

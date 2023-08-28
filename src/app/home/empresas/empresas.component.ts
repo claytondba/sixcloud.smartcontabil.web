@@ -1,5 +1,5 @@
-import { Component } from "@angular/core";
-import { PoBreadcrumb } from "@po-ui/ng-components";
+import { Component, ViewChild } from "@angular/core";
+import { PoBreadcrumb, PoDynamicViewField, PoModalComponent } from "@po-ui/ng-components";
 import { PoPageDynamicSearchLiterals, PoPageDynamicTableActions, PoPageDynamicTableCustomTableAction } from "@po-ui/ng-templates";
 
 @Component({
@@ -8,18 +8,35 @@ import { PoPageDynamicSearchLiterals, PoPageDynamicTableActions, PoPageDynamicTa
     styleUrls: ['./empresas.component.css']
 })
 export class EmpresasComponent {
-    readonly serviceApi = 'https://rpa.devplus.com.br/Empresas/EmpresasUI';
+
+    @ViewChild('empresaDetailModal') empresaDetailModal!: PoModalComponent;
+
+    readonly serviceApi = 'https://localhost:7109/Empresas/EmpresasUI';
+    detailedEmpresa: any;
     
     readonly breadcrumb: PoBreadcrumb = {
         items: [{ label: 'Home', link: '/home' }, { label: 'Cadastro de Empresas' }]
     };
     readonly actions: PoPageDynamicTableActions = {
-        new: '/empresa-edit',
+
+        new: '/empresa-edit/',
         removeAll: true,
-        detail: '/empresa-edit',
         edit: '/empresa-edit/:id'
     
     };
+
+
+    readonly detailFields: Array<PoDynamicViewField> = [
+      { property: 'razao', label: 'Razão Social', divider: 'Dados Gerais', gridColumns: 6},
+      { property: 'fatasia', label: 'Nome Fantasia', gridColumns: 6 },
+      { property: 'cnpj', label: 'CNPJ'},
+      { property: 'tel', label: 'Tel' },
+      { property: 'contato', label: 'Contato'},
+      { property: 'smart_cnd', label: 'Certidão Federal (103)', divider: 'Processamento RPA CNDs' },
+      { property: 'smart_cnd', label: 'Certidão Federal (103)'}
+    ];
+  
+
     readonly fields: Array<any> = [
       { property: 'id', key: true, visible: false },
       { property: 'razao', label: 'Nome' },
@@ -28,15 +45,20 @@ export class EmpresasComponent {
       { property: 'tel', label: 'Tel' },
       { property: 'contato', label: 'Contato' }
     ];
+
+
     tableCustomActions: Array<PoPageDynamicTableCustomTableAction> = [
         {
-          label: 'Details',
-          url: '/empresa-edit',
-          icon: 'po-icon-user'
-        },
-        {
-            label: 'Teste',
-            icon: 'po-icon-user'
+          label: 'Detalhes',
+          //icon: 'po-icon-user',
+          action: this.onClickEmpresaDetail.bind(this),
         },
       ];
+
+    private onClickEmpresaDetail(hotel: any) {
+
+      this.detailedEmpresa = hotel;
+      this.empresaDetailModal.open();
+      
+    }  
 }

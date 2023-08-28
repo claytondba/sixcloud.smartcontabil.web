@@ -34,6 +34,11 @@ const routes: Routes = [
     canActivate: [NotLoggedGuard]
   },
   {
+    path: 'empresa-edit',
+    component: EmpresaEditComponent,
+    canActivate: [NotLoggedGuard]
+  },
+  {
     path: 'status',
     component: StatusRpaComponent,
     canActivate: [NotLoggedGuard]
