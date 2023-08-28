@@ -12,42 +12,118 @@ export class EmpresaEditComponent{
     public readonly serviceApi = 'https://po-sample-api.fly.dev/v1/people';
 
     public readonly fields: Array<PoDynamicFormField> = [
-        { property: 'status', divider: 'Status', options: ['active', 'inactive'] },
-        { property: 'id', label: 'User ID', key: true, required: true },
-        { property: 'name', divider: 'Personal data', required: true },
-        { property: 'nickname' },
-        { property: 'email', label: 'E-mail' },
-        { property: 'birthdate', label: 'Birth date', type: 'date' },
-        { property: 'genre', options: ['female', 'male', 'others'], gridLgColumns: 6 },
-        { property: 'nationality' },
-        { property: 'birthPlace', label: 'Place of birth' },
-        { property: 'graduation' },
-        {
-          property: 'father',
-          label: 'Father`s name',
-          divider: 'Relationship',
-          gridMdColumns: 4,
-          gridLgColumns: 4
+        { property: 'razao', label: 'Razão Social', divider: 'Dados Gerais', gridColumns: 6, required: true },
+        { property: 'fatasia', label: 'Nome Fantasia', gridColumns: 6, required: true },
+        { property: 'cnpj', label: 'CNPJ', mask: '99.999.999/9999-99', required: true },
+        { property: 'tel', mask: '(99) 99999-9999', label: 'Tel' },
+        { property: 'contato', label: 'Contato'},
+
+        { property: 'smart_cnd', label: 'Certidão Federal (103)', 
+          divider: 'Processamento RPA CNDs', 
+          type: 'boolean', 
+          booleanTrue: 'Ativado',
+          booleanFalse: 'Desativado',
+          required: true 
+        },
+
+        { property: 'cnd_104', label: 'Certidão Federal (104)', 
+          type: 'boolean', 
+          booleanTrue: 'Ativado',
+          booleanFalse: 'Desativado',
+          required: true 
+        },
+        { 
+          property: 'cnd_105', label: 'Certidão Federal (105)', 
+          type: 'boolean', 
+          booleanTrue: 'Ativado',
+          booleanFalse: 'Desativado',
+          required: true 
+        },
+        { 
+          property: 'cnd_106', label: 'Certidão Federal (106)', 
+          type: 'boolean', 
+          booleanTrue: 'Ativado',
+          booleanFalse: 'Desativado',
+          required: true 
+        },
+        { property: 'smart_cnd_dia', label: 'Dia CND', 
+          type: 'number',
+          placeholder: 'Dia Padrão da CND',
+          help: 'Caso não informado, o sistema decidirá o melhor dia no mês para processamento',
+          gridColumns: 3,
+          maxValue: 28,
+          errorMessage: 'Dia inválido',
+          required: true 
+        },
+
+        { 
+          property: 'smart_ecac', label: 'Relatório Fin. eCAC', 
+          divider: 'Processamento RPA eCAC', 
+          type: 'boolean', 
+          booleanTrue: 'Ativado',
+          booleanFalse: 'Desativado',
+          required: true 
+        },
+        { 
+          property: 'ecac_108', label: 'eCAC (108)', 
+          type: 'boolean', 
+          booleanTrue: 'Ativado',
+          booleanFalse: 'Desativado',
+          required: true 
+        },
+        { property: 'smart_ecac_dia', label: 'Dia eCAC', 
+          type: 'number',
+          placeholder: 'Dia Padrão do eCAC',
+          help: 'Caso não informado, o sistema decidirá o melhor dia no mês para processamento',
+          gridColumns: 3,
+          maxValue: 28,
+          errorMessage: 'Dia inválido',
+          required: true 
+        },
+
+        { property: 'smart_giss', label: 'Fechamento de GISS', 
+          divider: 'Processamento RPA GISS Fechamentos', 
+          type: 'boolean', 
+          booleanTrue: 'Ativado',
+          booleanFalse: 'Desativado',
+          required: true 
         },
         {
-          property: 'mother',
-          label: 'Mother`s name',
-          offsetMdColumns: 4,
-          offsetLgColumns: 4,
-          gridMdColumns: 4,
-          gridLgColumns: 4
+          property: 'usuario_giss',
+          label: 'Usuário GISS',
+          secret: true,
+          placeholder: 'Usuário do GISS'
         },
         {
-          property: 'street',
-          divider: 'Address',
-          gridColumns: 4
+          property: 'senha_giss',
+          label: 'Senha GISS',
+          secret: true,
+          placeholder: 'Senha do GISS'
         },
-        {
-          property: 'city',
-          optionsService: 'https://po-sample-api.fly.dev/v1/cities?transform=true',
-          offsetColumns: 4,
-          gridColumns: 4
-        }
+
+
+
+      { property: 'smart_ginfes', label: 'Busca de GINFS', 
+        divider: 'Processamento RPA GINFES Diário', 
+        help: 'Esse processo é executado diáriamente',
+        type: 'boolean', 
+        booleanTrue: 'Ativado',
+        booleanFalse: 'Desativado',
+        required: true 
+      },
+      {
+        property: 'usuario_ginfes',
+        label: 'Usuário GINFES',
+        secret: true,
+        placeholder: 'Usuário do GINFES'
+      },
+      {
+        property: 'senha_ginfes',
+        label: 'Senha GINFES',
+        secret: true,
+        placeholder: 'Senha do GINFES'
+      },
+
       ];
 
       public readonly breadcrumb: PoBreadcrumb = {

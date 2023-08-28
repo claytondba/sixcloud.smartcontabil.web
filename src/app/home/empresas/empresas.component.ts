@@ -8,7 +8,7 @@ import { PoPageDynamicSearchLiterals, PoPageDynamicTableActions, PoPageDynamicTa
     styleUrls: ['./empresas.component.css']
 })
 export class EmpresasComponent {
-    readonly serviceApi = 'https://localhost:7109/Empresas/EmpresasUI';
+    readonly serviceApi = 'https://rpa.devplus.com.br/Empresas/EmpresasUI';
     
     readonly breadcrumb: PoBreadcrumb = {
         items: [{ label: 'Home', link: '/home' }, { label: 'Cadastro de Empresas' }]

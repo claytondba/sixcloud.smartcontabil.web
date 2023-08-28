@@ -6,7 +6,7 @@ import { Component } from "@angular/core";
     styleUrls:['./status-rpa.component.css']
 })
 export class StatusRpaComponent{
-    readonly serviceApi = 'https://localhost:7109/Geral/statuspoui';
+    readonly serviceApi = 'https://rpa.devplus.com.br/Geral/statuspoui';
 
     readonly fields: Array<any> = [
       { property: 'id', key: true, visible: false },
