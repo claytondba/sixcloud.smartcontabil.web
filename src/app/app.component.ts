@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 
-import { PoMenuItem } from '@po-ui/ng-components';
+import { PoMenuItem, PoToolbarAction, PoToolbarProfile } from '@po-ui/ng-components';
 import { UserService } from './core/user/user.service';
 import { Observable } from 'rxjs';
 import { User } from './core/user/user';
@@ -16,17 +16,47 @@ export class AppComponent {
 
   user$: Observable<User| null>;
   userInfo: User | null = null;
+  userName: string = "";
   
  constructor (private userService: UserService) {
   this.user$ = userService.getUser();
   this.isLoggedIn$ = this.userService.isLoggedIn;
+  this.user$.subscribe( x => this.userInfo = x );
 
+ }
+ logOut() {
+  this.userService.logout();
  }
   readonly menus: Array<PoMenuItem> = [
     { label: 'Home', action: this.onClick.bind(this) }
   ];
   private onClick() {
     alert('Clicked in menu item')
-  }
+  };
+
+  profile: PoToolbarProfile = {
+
+    avatar: 'https://po-ui.io/assets/graphics/logo-po.png',
+    subtitle: 'dev@pdev.com.br',
+    title: 'Smartontabil'
+  };
+  profileActions: Array<PoToolbarAction> = [
+    { icon: 'po-icon-user', label: 'Perfil' },
+    { icon: 'po-icon-company', label: 'Info da Empresa' },
+    { icon: 'po-icon-settings', label: 'Configuracões'},
+    { icon: 'po-icon-exit', label: 'Logout', type: 'danger', separator: true, action: () => this.logOut() }
+  ];
+  notificationActions: Array<PoToolbarAction> = [
+    {
+      icon: 'po-icon-news',
+      label: 'PO news, stay tuned!',
+      type: 'danger'
+    },
+    { 
+      icon: 'po-icon-message', 
+      label: 'New message', 
+      type: 'danger',
+    }
+  ];
 
 }

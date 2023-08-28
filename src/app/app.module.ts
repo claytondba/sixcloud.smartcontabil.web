@@ -15,6 +15,7 @@ import { DashComponent } from './home/dash/dash.component';
 import { LoginGuard } from './core/auth/login.guard';
 import { NotLoggedGuard } from './core/auth/not-logged.guard';
 import { EmpresasComponent } from './home/empresas/empresas.component';
+import { EmpresaEditComponent } from './home/empresas/empresa-edit/empresa-edit.component';
 
 const routes: Routes = [
   {
@@ -25,6 +26,11 @@ const routes: Routes = [
   {
     path: 'empresas',
     component: EmpresasComponent,
+    canActivate: [NotLoggedGuard]
+  },
+  {
+    path: 'empresa-edit',
+    component: EmpresaEditComponent,
     canActivate: [NotLoggedGuard]
   },
   {

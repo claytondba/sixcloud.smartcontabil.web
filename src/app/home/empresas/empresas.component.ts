@@ -1,4 +1,6 @@
 import { Component } from "@angular/core";
+import { PoBreadcrumb } from "@po-ui/ng-components";
+import { PoPageDynamicSearchLiterals, PoPageDynamicTableActions, PoPageDynamicTableCustomTableAction } from "@po-ui/ng-templates";
 
 @Component({
     selector: './sixcloud-empresas',
@@ -7,7 +9,18 @@ import { Component } from "@angular/core";
 })
 export class EmpresasComponent {
     readonly serviceApi = 'https://localhost:7109/Empresas/EmpresasUI';
-
+    
+    readonly breadcrumb: PoBreadcrumb = {
+        items: [{ label: 'Home', link: '/home' }, { label: 'Cadastro de Empresas' }]
+    };
+    readonly actions: PoPageDynamicTableActions = {
+        new: '/empresa-edit',
+        remove: true,
+        removeAll: true,
+        detail: '/empresa-edit',
+        duplicate: 'duplicate'
+    
+    };
     readonly fields: Array<any> = [
       { property: 'id', key: true, visible: false },
       { property: 'razao', label: 'Nome' },
@@ -16,4 +29,15 @@ export class EmpresasComponent {
       { property: 'tel', label: 'Tel' },
       { property: 'contato', label: 'Contato' }
     ];
+    tableCustomActions: Array<PoPageDynamicTableCustomTableAction> = [
+        {
+          label: 'Details',
+          url: '/empresa-edit',
+          icon: 'po-icon-user'
+        },
+        {
+            label: 'Teste',
+            icon: 'po-icon-user'
+        },
+      ];
 }

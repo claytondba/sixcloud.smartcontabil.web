@@ -1,5 +1,13 @@
 <div class="po-wrapper">
-  <po-toolbar *ngIf="isLoggedIn$ | async" p-title="Smart Contábil"></po-toolbar>
+  <po-toolbar *ngIf="isLoggedIn$ | async" p-title="SMART CONTABIL"
+   [p-profile]="profile"
+   [p-profile-actions]="profileActions"
+   [p-show-notification]="true"
+   [p-actions]="notificationActions"
+   [p-notification-number]="2"
+
+   [p-show-notification]="true">
+  </po-toolbar>
   <sixcloud-menu *ngIf="isLoggedIn$ | async"></sixcloud-menu>
   <router-outlet></router-outlet>
 </div>
