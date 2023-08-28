@@ -9,7 +9,7 @@ import { PoPageDynamicEditActions, PoPageDynamicEditLiterals } from "@po-ui/ng-t
 })
 export class EmpresaEditComponent{
 
-    public readonly serviceApi = 'https://po-sample-api.fly.dev/v1/people';
+    public readonly serviceApi = 'https://localhost:7109/Empresas';
 
     public readonly fields: Array<PoDynamicFormField> = [
         { property: 'razao', label: 'Razão Social', divider: 'Dados Gerais', gridColumns: 6, required: true },
@@ -137,7 +137,8 @@ export class EmpresaEditComponent{
 
       public readonly actions: PoPageDynamicEditActions = {
         save: '/documentation/po-page-dynamic-detail',
-        saveNew: '/documentation/po-page-dynamic-edit'
+        saveNew: '/documentation/po-page-dynamic-edit',
+        
       };
     
       public readonly literals: PoPageDynamicEditLiterals = {

@@ -29,7 +29,7 @@ const routes: Routes = [
     canActivate: [NotLoggedGuard]
   },
   {
-    path: 'empresa-edit',
+    path: 'empresa-edit/:id',
     component: EmpresaEditComponent,
     canActivate: [NotLoggedGuard]
   },

@@ -15,10 +15,9 @@ export class EmpresasComponent {
     };
     readonly actions: PoPageDynamicTableActions = {
         new: '/empresa-edit',
-        remove: true,
         removeAll: true,
         detail: '/empresa-edit',
-        duplicate: 'duplicate'
+        edit: '/empresa-edit/:id'
     
     };
     readonly fields: Array<any> = [
