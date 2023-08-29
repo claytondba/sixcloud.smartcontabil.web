@@ -39,7 +39,7 @@ export class RequestInterceptor implements HttpInterceptor{
       {
           console.log('erro = 0!');
           console.log(error);
-
+          this.userService.logout();
           this.tokenService.removeToken();
           this.router.navigate(['/']);
       }
