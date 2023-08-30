@@ -17,6 +17,7 @@ import { NotLoggedGuard } from './core/auth/not-logged.guard';
 import { EmpresasComponent } from './home/empresas/empresas.component';
 import { EmpresaEditComponent } from './home/empresas/empresa-edit/empresa-edit.component';
 import { CertidaoComponent } from './home/certidoes/certidao.component';
+import { GissComponent } from './home/giss/giss.component';
 
 const routes: Routes = [
   {
@@ -27,6 +28,11 @@ const routes: Routes = [
   {
     path: 'certidoes',
     component: CertidaoComponent,
+    canActivate: [NotLoggedGuard]
+  },
+  {
+    path: 'giss',
+    component: GissComponent,
     canActivate: [NotLoggedGuard]
   },
   {

@@ -7,6 +7,7 @@ import { StatusRpaModule } from "./staus-rpa/staus-rpa.module";
 import { DashModule } from "./dash/dash.module";
 import { EmpresasModule } from "./empresas/empresas.component.module";
 import { CertidaoModule } from "./certidoes/certidao.module";
+import { GissModule } from "./giss/giss.module";
 
 @NgModule({
     declarations:[
@@ -17,7 +18,8 @@ import { CertidaoModule } from "./certidoes/certidao.module";
         StatusRpaModule, 
         DashModule,
         EmpresasModule, 
-        CertidaoModule
+        CertidaoModule,
+        GissModule
     ],
     exports:[
         

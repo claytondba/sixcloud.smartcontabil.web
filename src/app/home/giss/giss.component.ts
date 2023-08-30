@@ -1,15 +1,18 @@
 import { Component } from "@angular/core";
+
 import { PoBreadcrumb } from "@po-ui/ng-components";
 import { PoPageDynamicTableActions, PoPageDynamicTableCustomTableAction } from "@po-ui/ng-templates";
 
 @Component({
-    selector: 'sixcloud-certidao',
-    templateUrl: './certidao.component.html',
-    styleUrls: ['./certidao.component.css']
+    selector: 'sixcloud-giss',
+    templateUrl: './giss.component.html',
+    styleUrls: ['./giss.component.css']
 })
-export class CertidaoComponent {
+export class GissComponent {
 
-    readonly serviceApi = 'https://localhost:7109/ConsultaCnd/CertidaoUI';
+
+
+    readonly serviceApi = 'https://localhost:7109/ConsultaGISS/GissUI';
 
     readonly breadcrumb: PoBreadcrumb = {
         items: [{ label: 'Home', link: '/home' }, 
@@ -48,4 +51,7 @@ export class CertidaoComponent {
             //action: this.onClickEmpresaDetail.bind(this),
         },
       ];
+
+
+
 }
