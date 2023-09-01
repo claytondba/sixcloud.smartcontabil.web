@@ -4,3 +4,10 @@
     --color-secondary: rgb(54, 157, 201);
     --color-tertiary: rgb(10, 164, 146);
   } */
+
+  .primary-text {
+    color: #4a5c60;
+  }
+  .secondary-text {
+    color: #777;
+  }
