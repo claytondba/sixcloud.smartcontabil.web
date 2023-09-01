@@ -12,7 +12,7 @@ export class GissComponent {
 
 
 
-    readonly serviceApi = 'https://localhost:7109/ConsultaGISS/GissUI';
+    readonly serviceApi = 'https://rpa.devplus.com.br/ConsultaGISS/GissUI';
 
     readonly breadcrumb: PoBreadcrumb = {
         items: [{ label: 'Home', link: '/home' }, 

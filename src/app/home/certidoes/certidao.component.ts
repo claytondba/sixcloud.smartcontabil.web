@@ -9,7 +9,7 @@ import { PoPageDynamicTableActions, PoPageDynamicTableCustomTableAction } from "
 })
 export class CertidaoComponent {
 
-    readonly serviceApi = 'https://localhost:7109/ConsultaCnd/CertidaoUI';
+    readonly serviceApi = 'https://rpa.devplus.com.br/ConsultaCnd/CertidaoUI';
 
     readonly breadcrumb: PoBreadcrumb = {
         items: [{ label: 'Home', link: '/home' }, 

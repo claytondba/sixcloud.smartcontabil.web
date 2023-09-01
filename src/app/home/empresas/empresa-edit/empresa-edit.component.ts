@@ -9,7 +9,7 @@ import { PoPageDynamicEditActions, PoPageDynamicEditLiterals } from "@po-ui/ng-t
 })
 export class EmpresaEditComponent{
 
-    public readonly serviceApi = 'https://localhost:7109/Empresas';
+    public readonly serviceApi = 'https://rpa.devplus.com.br/Empresas';
 
     public readonly fields: Array<PoDynamicFormField> = [
         { property: 'id', label: 'ID', divider: 'Dados Gerais', disabled: true, gridColumns: 2},
