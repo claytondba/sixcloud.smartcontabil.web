@@ -1,6 +1,9 @@
-import { Component } from "@angular/core";
-import { PoBreadcrumb } from "@po-ui/ng-components";
+import { Component, ViewChild } from "@angular/core";
+import { PoBreadcrumb, PoModalComponent } from "@po-ui/ng-components";
 import { PoPageDynamicTableActions, PoPageDynamicTableCustomTableAction } from "@po-ui/ng-templates";
+import { Certidao } from "./certidao";
+import { DomSanitizer, SafeResourceUrl } from "@angular/platform-browser";
+import { CertidoesService } from "./certidao.service";
 
 @Component({
     selector: 'sixcloud-certidao',
@@ -8,6 +11,12 @@ import { PoPageDynamicTableActions, PoPageDynamicTableCustomTableAction } from "
     styleUrls: ['./certidao.component.css']
 })
 export class CertidaoComponent {
+
+    @ViewChild('certidaoDetailModal') certidaoDetailModal!: PoModalComponent;
+
+    certidaoEdit: Certidao | null = null;
+    encodedReport: string = '';
+    safeEncodedReport: SafeResourceUrl | null;
 
     readonly serviceApi = 'https://rpa.devplus.com.br/ConsultaCnd/CertidaoUI';
 
@@ -34,8 +43,8 @@ export class CertidaoComponent {
     tableCustomActions: Array<PoPageDynamicTableCustomTableAction> = [
         {
           label: 'Visualizar',
-          icon: 'po-icon po-icon-eye'
-          //action: this.onClickEmpresaDetail.bind(this),
+          icon: 'po-icon po-icon-eye',
+          action: this.visualizaCertidao.bind(this),
         },
         {
             label: 'Reprocessar',
@@ -48,4 +57,31 @@ export class CertidaoComponent {
             //action: this.onClickEmpresaDetail.bind(this),
         },
       ];
+
+      constructor(private certidaoService: CertidoesService,
+                  private sanitizer: DomSanitizer,){
+
+        this.safeEncodedReport = null;
+
+      }
+
+      visualizaCertidao(certidao: any){
+
+            this.certidaoEdit = certidao as Certidao;
+            console.log(certidao);
+            this.certidaoService.getDocument(this.certidaoEdit.id).subscribe(file => {
+                certidao.arquivo = file;
+
+                if(certidao.filetype == 'png')
+                  this.encodedReport = 'data:image/png;base64,' + certidao.arquivo;
+                else
+                {
+                  this.safeEncodedReport = this.sanitizer.bypassSecurityTrustResourceUrl('data:application/pdf;base64,' + certidao.arquivo.toString());
+                }
+
+                this.certidaoDetailModal.open();
+            });
+
+      }
+      
 }

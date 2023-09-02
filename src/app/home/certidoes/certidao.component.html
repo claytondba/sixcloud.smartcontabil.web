@@ -8,6 +8,13 @@ p-title="Consulta de Certidões"
 
 </po-page-dynamic-table>
 
-<!-- <po-modal #empresaDetailModal p-title="Detalhes - Empresa">
-    <po-dynamic-view [p-fields]="detailFields" [p-value]="detailedEmpresa"> </po-dynamic-view>
-</po-modal> -->
+<po-modal #certidaoDetailModal p-size="xl" p-title="Visualizar Certidão">
+
+    <po-image *ngIf="this.certidaoEdit?.filetype =='png'" p-alt="string"
+                [p-src]="this.encodedReport">
+    </po-image>
+    <!-- <img *ngIf="this.certidaoEdit?.filetype =='png'" class="img-fluid" [src]="this.encodedReport"> -->
+    <iframe *ngIf="this.certidaoEdit?.filetype =='pdf'" style="position:fixed; top:0; left:0; bottom:0; right:0; width:100%; height:100%; border:none; margin:0; padding:0; overflow:hidden; z-index:999999;" class="embed-responsive" type="application/pdf" [src]="this.safeEncodedReport"></iframe>
+
+    <!-- <po-dynamic-view [p-fields]="detailFields" [p-value]="detailedEmpresa"> </po-dynamic-view> -->
+</po-modal>
