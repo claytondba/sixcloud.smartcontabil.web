@@ -24,7 +24,7 @@ export class LoginComponent {
         .authenticate(formData.login, formData.password)
         .subscribe(() => {
           console.log('logou');
-          this.router.navigate(['status']);
+          this.router.navigate(['home']);
         },
           err => {
             console.log(err);
