@@ -17,6 +17,7 @@ export class CertidaoComponent {
     certidaoEdit: Certidao | null = null;
     encodedReport: string = '';
     safeEncodedReport: SafeResourceUrl | null;
+    isHideLoading: boolean = true;
 
     readonly serviceApi = 'https://rpa.devplus.com.br/ConsultaCnd/CertidaoUI';
 
@@ -67,6 +68,7 @@ export class CertidaoComponent {
 
       visualizaCertidao(certidao: any){
 
+            this.isHideLoading = false;
             this.certidaoEdit = certidao as Certidao;
             console.log(certidao);
             this.certidaoService.getDocument(this.certidaoEdit.id).subscribe(file => {
@@ -80,6 +82,7 @@ export class CertidaoComponent {
                 }
 
                 this.certidaoDetailModal.open();
+                this.isHideLoading = true;
             });
 
       }
