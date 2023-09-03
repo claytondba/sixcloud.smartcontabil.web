@@ -1,21 +1,21 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: rpa-web-deployment
+  name: rpa-web-deploymentpoui
   labels:
-    app: rpa-webapp
+    app: rpa-webapppoui
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: rpa-webapp
+      app: rpa-webapppoui
   template:
     metadata:
       labels:
-        app: rpa-webapp
+        app: rpa-webapppoui
     spec:
       containers:
-      - name: rpa-webapp
+      - name: rpa-webapppoui
         image: gcr.io/PROJECT_ID/IMAGE:TAG
         resources:
           requests:
