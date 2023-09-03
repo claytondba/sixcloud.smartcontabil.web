@@ -10,13 +10,11 @@ import { PoPageDynamicTableActions, PoPageDynamicTableCustomTableAction } from "
 })
 export class GissComponent {
 
-
-
     readonly serviceApi = 'https://rpa.devplus.com.br/ConsultaGISS/GissUI';
 
     readonly breadcrumb: PoBreadcrumb = {
         items: [{ label: 'Home', link: '/home' }, 
-                { label: 'Consulta de Certidões' }]
+                { label: 'GISS - Fechamentos' }]
     };
 
     readonly fields: Array<any> = [

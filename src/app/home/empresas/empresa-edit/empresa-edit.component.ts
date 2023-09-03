@@ -27,21 +27,21 @@ export class EmpresaEditComponent{
           required: true 
         },
 
-        { property: 'cnd_104', label: 'Certidão Federal (104)', 
+        { property: 'cnd_104', label: 'Regularidade FGTS (104)', 
           type: 'boolean', 
           booleanTrue: 'Ativado',
           booleanFalse: 'Desativado',
           required: true 
         },
         { 
-          property: 'cnd_105', label: 'Certidão Federal (105)', 
+          property: 'cnd_105', label: 'Debitos Trabalhistas (105)', 
           type: 'boolean', 
           booleanTrue: 'Ativado',
           booleanFalse: 'Desativado',
           required: true 
         },
         { 
-          property: 'cnd_106', label: 'Certidão Federal (106)', 
+          property: 'cnd_106', label: 'Optante Simples (106)', 
           type: 'boolean', 
           booleanTrue: 'Ativado',
           booleanFalse: 'Desativado',
