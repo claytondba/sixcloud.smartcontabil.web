@@ -9,6 +9,6 @@ metadata:
 spec:
   defaultBackend:
     service:
-      name: rpa-webapp-svc
+      name: rpa-webapppoui-svc
       port:
         number: 80

@@ -1,10 +1,10 @@
 apiVersion: v1
 kind: Service
 metadata:
-  name: rpa-webapp-svc
+  name: rpa-webapppoui-svc
 spec:
   selector:
-    app: rpa-webapp
+    app: rpa-webapppoui
   ports:
     - port: 80
       targetPort: 80
