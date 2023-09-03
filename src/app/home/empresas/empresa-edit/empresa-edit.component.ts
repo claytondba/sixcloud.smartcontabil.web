@@ -19,7 +19,8 @@ export class EmpresaEditComponent{
         { property: 'tel', mask: '(99) 99999-9999', label: 'Tel' },
         { property: 'contato', label: 'Contato'},
 
-        { property: 'smart_cnd', label: 'Certidão Federal (103)', 
+        { 
+          property: 'smart_cnd', label: 'Certidão Federal (103)', 
           divider: 'Processamento RPA CNDs', 
           type: 'boolean', 
           booleanTrue: 'Ativado',
@@ -27,7 +28,8 @@ export class EmpresaEditComponent{
           required: true 
         },
 
-        { property: 'cnd_104', label: 'Regularidade FGTS (104)', 
+        { 
+          property: 'cnd_104', label: 'Regularidade FGTS (104)', 
           type: 'boolean', 
           booleanTrue: 'Ativado',
           booleanFalse: 'Desativado',
