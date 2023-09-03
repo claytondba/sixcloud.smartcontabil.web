@@ -1,7 +1,7 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: rpa-web-deploymentpoui
+  name: rpa-webapppoui-deployment
   labels:
     app: rpa-webapppoui
 spec:
