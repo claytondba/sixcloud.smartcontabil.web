@@ -45,8 +45,8 @@ jobs:
       PROJECT_ID: ${{ secrets.GKE_PROJECT }}
       GKE_CLUSTER: ${{ secrets.GKE_CLUSTER_NAME }}    # Add your cluster name here.
       GKE_ZONE: southamerica-east1-a   # Add your cluster zone here.
-      DEPLOYMENT_NAME: rpa-webpoui-deployment # Add your deployment name here.
-      IMAGE: devplus/rpa.webpoui  
+      DEPLOYMENT_NAME: rpa-webapppoui-deployment # Add your deployment name here.
+      IMAGE: devplus/rpa.webapppoui  
     
     steps:
     - name: Checkout
