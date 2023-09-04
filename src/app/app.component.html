@@ -5,12 +5,13 @@
    [p-show-notification]="true"
    [p-actions]="notificationActions"
    [p-notification-number]="2"
-
+  
    [p-show-notification]="true">
   </po-toolbar>
   <po-menu *ngIf="isLoggedIn$ | async"
-  
-  p-short-logo=""
+  p-logo-alt="Smart Contábil - Cloud"
+  p-logo ="../../../assets/logo64.png"
+  p-short-logo="../../../assets/logo32.png"
   [p-filter]="true" 
   [p-menus]="[{ label: 'Home', link: '/home', icon: 'po-icon po-icon-home', shortLabel: 'fsd' },
               { label: 'Empresas', link: '/empresas', icon: 'po-icon po-icon-company', shortLabel: 'fds' },
