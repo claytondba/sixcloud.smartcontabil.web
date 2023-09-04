@@ -1,12 +1,68 @@
-<po-page-default p-title="Dashboard"
-[p-breadcrumb]="breadcrumb">Teste
+<po-page-default p-title="Home - Central de Controle"
+[p-breadcrumb]="breadcrumb">
+<po-divider
+    p-label="Visão Geral Smart Contábil" >
+</po-divider>
+<div class="po-row">
+    <po-widget
+      class="po-lg-3 po-mt-2"
+      p-title="Certidões"
+      p-primary-label="Detalhes"
+    >
+      <div class="po-font-subtitle po-text-center">17 Processamento</div>
+      <div class="po-text-center">Agendado desde 05/04/2023</div>
+    </po-widget>
+  
+    <po-widget
+      class="po-lg-3 po-mt-2"
 
-<po-widget
-    p-background="string"
-    p-help="Teste"
-    [p-no-shadow]="false"
-    p-primary-label="Ir para certidões"
-    p-title="Processament de Certidões">
-</po-widget>
+      p-primary-label="Detalhes"
+      p-title="Ginfes Diário"
 
+    >
+      <div class="po-font-subtitle po-text-center">679</div>
+      <div class="po-text-center">Último update em 18:34</div>
+    </po-widget>
+  
+    <po-widget
+      class="po-lg-3 po-mt-2"
+      p-primary-label="Detalhes"
+      p-title="GISS Fechamento Mensal"
+
+    >
+      <div class="po-font-subtitle po-text-center">786</div>
+      <div class="po-text-center">Último update em 08:20</div>
+    </po-widget>
+    <po-widget
+    class="po-lg-3 po-mt-2"
+    p-primary-label="Detalhes"
+    p-title="RPAs em Execução"
+
+  >
+    <div class="po-font-subtitle po-text-center">10</div>
+    <div class="po-text-center">Último update em 08:20</div>
+  </po-widget>
+  </div>
+
+  <po-divider
+    p-label="Status dos Serviços" >
+</po-divider>
+<div class="po-row">
+    <div class="po-md-6">
+      <po-gauge
+        p-title="Perfomance de Processamento RPA"
+        [p-value]="25"
+        p-description="Eficácia de Processamento"
+        [p-ranges]="turnoverRanges"
+      ></po-gauge>
+    </div>
+    <div class="po-md-6">
+      <po-gauge
+        p-title="Performance de Resposta do Serviço"
+        [p-value]= "82"
+        p-description="Disponibilidade do Serviço"
+        [p-ranges]="salesRanges"
+      ></po-gauge>
+    </div>
+</div>
 </po-page-default>
