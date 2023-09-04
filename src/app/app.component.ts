@@ -17,11 +17,11 @@ export class AppComponent {
   user$: Observable<User| null>;
   userInfo: User | null = null;
   userName: string = "";
-  
+
  constructor (private userService: UserService) {
   this.user$ = userService.getUser();
   this.isLoggedIn$ = this.userService.isLoggedIn;
-  this.user$.subscribe( x => this.userInfo = x );
+  this.user$.subscribe( x => {this.userInfo = x, this.userName = x?.name as string} );
 
  }
  logOut() {
@@ -48,15 +48,21 @@ export class AppComponent {
   ];
   notificationActions: Array<PoToolbarAction> = [
     {
-      icon: 'po-icon-news',
-      label: 'PO news, stay tuned!',
-      type: 'danger'
+      icon: 'po-icon po-icon-message',
+      label: 'Processamento CND',
+      type: 'info'
     },
     { 
-      icon: 'po-icon-message', 
-      label: 'New message', 
-      type: 'danger',
+      icon: 'po-icon po-icon-message', 
+      label: 'Processamento GISS', 
+      type: 'info',
     }
+  ];
+
+  actions: Array<PoToolbarAction> = [
+    { label: 'Start cash register'},
+    { label: 'Finalize cash register'},
+    { label: 'Cash register options'}
   ];
 
 }
