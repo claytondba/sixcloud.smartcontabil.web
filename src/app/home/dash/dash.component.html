@@ -1,38 +1,84 @@
+<div>
+    <po-loading-overlay [hidden]="!(isLoadingCnd || isLoadingGinfes || isLoadingGiss)"></po-loading-overlay>
+</div>
 <po-page-default p-title="Home - Central de Controle"
 [p-breadcrumb]="breadcrumb">
+
 <po-divider
     p-label="Visão Geral Smart Contábil" >
 </po-divider>
 <div class="po-row">
     <po-widget
       class="po-lg-3 po-mt-2"
-      p-title="Certidões"
-      p-primary-label="Detalhes"
+      p-title="Certidões - {{currentDate | date:'MM/yyyy'}}"
+      p-primary-label="Ir para Certidões"
     >
-      <div class="po-font-subtitle po-text-center">17 Processamento</div>
-      <div class="po-text-center">Agendado desde 05/04/2023</div>
+
+    <!-- <div class="po-font-subtitle po-text-center">Total : 45</div> -->
+      <div class="po-font-subtitle po-text-center">
+        
+        <div class="po-font-text-large" *ngFor="let d of cndStatus">
+            <span *ngIf="d.cstat == '100'" class="po-icon po-icon po-icon-ok"></span>
+            <span *ngIf="d.cstat == '10' || d.cstat == '1' " class="po-icon po-icon-settings"></span>
+            <span *ngIf="d.cstat == '8'" class="po-icon po-icon-exclamation"></span>
+            <span *ngIf="d.cstat == '102'" class="po-icon po-icon-exclamation"></span>
+            <span *ngIf="d.cstat == '101'" class="po-icon po-icon-exclamation"></span>
+             {{d.total}} - {{d.descricao}}
+        </div>
+      </div>
+      <div class="po-text-center">Total : 45</div>
     </po-widget>
   
     <po-widget
       class="po-lg-3 po-mt-2"
-
+      p-title="Ginfes - Até: {{currentDate | date:'dd/MM/yyyy'}}"
       p-primary-label="Detalhes"
-      p-title="Ginfes Diário"
-
     >
-      <div class="po-font-subtitle po-text-center">679</div>
-      <div class="po-text-center">Último update em 18:34</div>
+
+    <!-- <div class="po-font-subtitle po-text-center">Total : 45</div> -->
+      <div class="po-font-subtitle po-text-center">
+        
+        <div class="po-font-text-large" *ngFor="let d of ginfesStatus">
+            <span *ngIf="d.cstat == '100'" class="po-icon po-icon po-icon-ok"></span>
+            <span *ngIf="d.cstat == '8'" class="po-icon po-icon-exclamation"></span>
+            <span *ngIf="d.cstat == '10' || d.cstat == '1' " class="po-icon po-icon-settings"></span>
+            <span *ngIf="d.cstat == '102'" class="po-icon po-icon-exclamation"></span>
+            <span *ngIf="d.cstat == '101'" class="po-icon po-icon-exclamation"></span>
+            <span *ngIf="d.cstat == '997'" class="po-icon po-icon-exclamation"></span>
+            <span *ngIf="d.cstat == '998'" class="po-icon po-icon-exclamation"></span>
+            <span *ngIf="d.cstat == '999'" class="po-icon po-icon-exclamation"></span>
+             {{d.total}} - {{d.descricao}}
+        </div>
+      </div>
+      <div class="po-text-center">Total : 45</div>
     </po-widget>
   
     <po-widget
       class="po-lg-3 po-mt-2"
+      p-title="GISS Fechamentos {{currentDate | date:'MM/yyyy'}}"
       p-primary-label="Detalhes"
-      p-title="GISS Fechamento Mensal"
-
     >
-      <div class="po-font-subtitle po-text-center">786</div>
-      <div class="po-text-center">Último update em 08:20</div>
+
+    <!-- <div class="po-font-subtitle po-text-center">Total : 45</div> -->
+      <div class="po-font-subtitle po-text-center">
+        
+        <div class="po-font-text-large" *ngFor="let d of gissStatus">
+            <span *ngIf="d.cstat == '100'" class="po-icon po-icon po-icon-ok"></span>
+            <span *ngIf="d.cstat == '8'" class="po-icon po-icon-exclamation"></span>
+            <span *ngIf="d.cstat == '10' || d.cstat == '1' " class="po-icon po-icon-settings"></span>
+            <span *ngIf="d.cstat == '102'" class="po-icon po-icon-exclamation"></span>
+            <span *ngIf="d.cstat == '101'" class="po-icon po-icon-exclamation"></span>
+            <span *ngIf="d.cstat == '997'" class="po-icon po-icon-exclamation"></span>
+            <span *ngIf="d.cstat == '998'" class="po-icon po-icon-exclamation"></span>
+            <span *ngIf="d.cstat == '999'" class="po-icon po-icon-exclamation"></span>
+             {{d.total}} - {{d.descricao}}
+        </div>
+      </div>
+      <div class="po-text-center">Total : 45</div>
     </po-widget>
+
+
+
     <po-widget
     class="po-lg-3 po-mt-2"
     p-primary-label="Detalhes"
