@@ -19,17 +19,37 @@
   [p-menus]="[{ label: 'Home', link: '/home', icon: 'po-icon po-icon-home', shortLabel: 'Home' },
               { label: 'Empresas', link: '/empresas', icon: 'po-icon po-icon-company', shortLabel: 'Empresas' },
               { label: 'Certidões', link: '/certidoes', icon: 'po-icon po-icon-clipboard', shortLabel: 'Certidões' },
+              { label: 'Relatórios e-CAC', link: '#', icon: 'po-icon po-icon-document-filled', shortLabel: 'Certidões' },
               { label: 'Ginfes', link: '/', icon: 'po-icon po-icon-document', shortLabel: 'Ginfes' },
               { label: 'GISS - Fechamentos', link: '/giss', icon: 'po-icon po-icon-calendar', shortLabel: 'GISS' },
+              { label: 'PG-DAS', link: '#', icon: 'po-icon po-icon-finance', shortLabel: 'GISS' },
               { label: 'Status dos Serviços', link: '/status', icon: 'po-icon po-icon-pallet-partial', shortLabel: 'Status' },
-              { label: 'Configurações', link: '/status', icon: 'po-icon-settings', shortLabel: 'Configurações' },
+              { 
+                label: 'Configurações', link: '/status', icon: 'po-icon-settings', shortLabel: 'Configurações',
+                subItems: [
+                  { label: 'Configurações Empresa', link: '#' },
+                  { label: 'Usuários', link: '#' },
+                  { label: 'Perfil', link: '#' }
+                ]
+              },
+              { 
+                label: 'Ajuda', link: '#', icon: 'po-icon po-icon-help', shortLabel: 'Help',
+                subItems: [
+                  { label: 'Guias de Uso', link: '#' },
+                  { label: 'Suporte', link: '#' }
+                ]
+              },
               ]">
-
+<!-- 
     <div *p-menu-header-template class="po-p-2 po-font-title">
       <p>Bem Vindo,</p>
       <p>
-        <b> {{userName}} </b>
+        <b> {{userInfo?.name}} </b>
       </p>
+    </div> -->
+
+    <div *p-menu-header-template class="po-p-1 po-font-title">
+      <p>Bem Vindo, <b> {{userInfo?.name}} </b></p>
     </div>
   </po-menu>
   <router-outlet></router-outlet>
