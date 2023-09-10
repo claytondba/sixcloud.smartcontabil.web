@@ -3,7 +3,7 @@ kind: Ingress
 metadata:
   name: rpa-webapp-dev-ingress
   annotations:
-    kubernetes.io/ingress.global-static-ip-name: dev-ip
+    kubernetes.io/ingress.global-static-ip-name: web-ip
     networking.gke.io/managed-certificates: dev-cert
     kubernetes.io/ingress.class: "gce"
 spec:
