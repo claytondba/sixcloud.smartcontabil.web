@@ -103,10 +103,18 @@ export class EmpresaEditComponent{
           secret: true,
           placeholder: 'Senha do GISS'
         },
+        { 
+          property: 'dia_fechamento', label: 'Dia de fechamento do GISS', 
+          type: 'number',
+          placeholder: 'Dia de fechamento do GISS',
+          help: 'Caso não informado, o sistema decidirá o melhor dia no mês para processamento',
+          maxValue: 28,
+          errorMessage: 'Dia inválido',
+          required: true 
+        },
 
 
-
-      { property: 'smart_ginfes', label: 'Busca de GINFS', 
+      { property: 'smart_ginfes', label: 'Busca de GINFES', 
         divider: 'Processamento RPA GINFES Diário', 
         help: 'Esse processo é executado diáriamente',
         type: 'boolean', 
@@ -114,6 +122,7 @@ export class EmpresaEditComponent{
         booleanFalse: 'Desativado',
         required: true 
       },
+
       {
         property: 'usuario_ginfes',
         label: 'Usuário GINFES',
