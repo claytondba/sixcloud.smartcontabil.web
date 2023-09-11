@@ -85,8 +85,9 @@ export class EmpresaEditComponent{
         },
 
         { property: 'smart_giss', label: 'Fechamento de GISS', 
-          divider: 'Processamento RPA GISS Fechamentos', 
-          type: 'boolean', 
+          divider: 'Processamento RPA GISS Fechamentos',
+          help: 'Esse processo é executado mensalmente', 
+          type: 'boolean',  
           booleanTrue: 'Ativado',
           booleanFalse: 'Desativado',
           required: true 
