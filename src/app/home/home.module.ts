@@ -8,6 +8,7 @@ import { DashModule } from "./dash/dash.module";
 import { EmpresasModule } from "./empresas/empresas.component.module";
 import { CertidaoModule } from "./certidoes/certidao.module";
 import { GissModule } from "./giss/giss.module";
+import { GinfesModule } from "./ginfes/ginfes.module";
 
 @NgModule({
     declarations:[
@@ -19,7 +20,8 @@ import { GissModule } from "./giss/giss.module";
         DashModule,
         EmpresasModule, 
         CertidaoModule,
-        GissModule
+        GissModule,
+        GinfesModule
     ],
     exports:[
         

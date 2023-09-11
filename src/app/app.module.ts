@@ -18,6 +18,7 @@ import { EmpresasComponent } from './home/empresas/empresas.component';
 import { EmpresaEditComponent } from './home/empresas/empresa-edit/empresa-edit.component';
 import { CertidaoComponent } from './home/certidoes/certidao.component';
 import { GissComponent } from './home/giss/giss.component';
+import { GinfesComponent } from './home/ginfes/ginfes.component';
 
 const routes: Routes = [
   {
@@ -33,6 +34,11 @@ const routes: Routes = [
   {
     path: 'giss',
     component: GissComponent,
+    canActivate: [NotLoggedGuard]
+  },
+  {
+    path: 'ginfes',
+    component: GinfesComponent,
     canActivate: [NotLoggedGuard]
   },
   {
