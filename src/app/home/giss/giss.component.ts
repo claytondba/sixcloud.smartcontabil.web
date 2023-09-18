@@ -34,20 +34,36 @@ export class GissComponent {
     };
     tableCustomActions: Array<PoPageDynamicTableCustomTableAction> = [
         {
-          label: 'Visualizar',
-          icon: 'po-icon po-icon-eye'
-          //action: this.onClickEmpresaDetail.bind(this),
-        },
-        {
             label: 'Reprocessar',
             icon: 'po-icon-settings'
             //action: this.onClickEmpresaDetail.bind(this),
         },
         {
-            label: 'Download',
+          label: 'Gua de Prestados',
+          icon: 'po-icon-download'
+          //action: this.onClickEmpresaDetail.bind(this),
+        },
+        {
+            label: 'Livro Prestados',
             icon: 'po-icon-download'
             //action: this.onClickEmpresaDetail.bind(this),
         },
+        {
+            label: 'Livro Tomados',
+            icon: 'po-icon-download'
+            //action: this.onClickEmpresaDetail.bind(this),
+        },
+        {
+            label: 'Guias/Certificados',
+            icon: 'po-icon-download'
+            //action: this.onClickEmpresaDetail.bind(this),
+        },
+        {
+            label: 'Aceite de Notas',
+            icon: 'po-icon-download'
+            //action: this.onClickEmpresaDetail.bind(this),
+        },
+        
       ];
 
 
