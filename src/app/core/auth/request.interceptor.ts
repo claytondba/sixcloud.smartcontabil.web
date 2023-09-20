@@ -19,7 +19,7 @@ export class RequestInterceptor implements HttpInterceptor{
   intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
 
     if(this.tokenService.hasToken()) {
-
+      //console.log(req); debug
       const token = this.tokenService.getToken();
       req = req.clone({
             setHeaders: { 'Authorization' : 'Bearer ' + token }

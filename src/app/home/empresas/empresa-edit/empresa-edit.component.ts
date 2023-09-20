@@ -1,6 +1,6 @@
 import { Component } from "@angular/core";
 import { PoBreadcrumb, PoDynamicFormField } from "@po-ui/ng-components";
-import { PoPageDynamicEditActions, PoPageDynamicEditLiterals } from "@po-ui/ng-templates";
+import { PoPageDynamicEditActions, PoPageDynamicEditBeforeSave, PoPageDynamicEditBeforeSaveNew, PoPageDynamicEditLiterals } from "@po-ui/ng-templates";
 
 @Component({
     selector:'sixcloud-empresa-edit',
@@ -9,6 +9,8 @@ import { PoPageDynamicEditActions, PoPageDynamicEditLiterals } from "@po-ui/ng-t
 })
 export class EmpresaEditComponent{
 
+  
+    //public readonly serviceApi = 'https://localhost:7109/Empresas';
     public readonly serviceApi = 'https://rpa.devplus.com.br/Empresas';
 
     public readonly fields: Array<PoDynamicFormField> = [
@@ -149,14 +151,21 @@ export class EmpresaEditComponent{
 
 
       public readonly actions: PoPageDynamicEditActions = {
-        save: '/documentation/po-page-dynamic-detail',
-        saveNew: '/documentation/po-page-dynamic-edit',
-        
+        save: '/empresas',
+        saveNew: '/empresas',
       };
     
       public readonly literals: PoPageDynamicEditLiterals = {
         pageActionCancel: 'Descartar',
         pageActionSave: 'Gravar',
         pageActionSaveNew: 'Gravar e novo'
+      };
+
+      public readonly teste: PoPageDynamicEditBeforeSave = {
+        newUrl: 'empresas'
+      };
+
+      public readonly teste2: PoPageDynamicEditBeforeSaveNew = {
+        newUrl: 'empresas'
       };
 }

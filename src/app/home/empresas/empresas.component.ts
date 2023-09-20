@@ -11,7 +11,10 @@ export class EmpresasComponent {
 
     @ViewChild('empresaDetailModal') empresaDetailModal!: PoModalComponent;
 
+    //readonly serviceApi = 'https://localhost:7109/Empresas/EmpresasUI';
     readonly serviceApi = 'https://rpa.devplus.com.br/Empresas/EmpresasUI';
+
+
     detailedEmpresa: any;
     
     readonly breadcrumb: PoBreadcrumb = {
@@ -22,7 +25,7 @@ export class EmpresasComponent {
         new: '/empresa-edit/',
         removeAll: true,
         edit: '/empresa-edit/:id'
-    
+
     };
 
 
