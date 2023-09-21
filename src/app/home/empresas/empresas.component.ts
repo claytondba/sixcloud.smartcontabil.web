@@ -11,8 +11,8 @@ export class EmpresasComponent {
 
     @ViewChild('empresaDetailModal') empresaDetailModal!: PoModalComponent;
 
-    //readonly serviceApi = 'https://localhost:7109/Empresas/EmpresasUI';
-    readonly serviceApi = 'https://rpa.devplus.com.br/Empresas/EmpresasUI';
+    //readonly serviceApi = 'https://localhost:7109/api/v1/empresas';
+    readonly serviceApi = 'https://rpa.devplus.com.br/api/v1/empresas';
 
 
     detailedEmpresa: any;

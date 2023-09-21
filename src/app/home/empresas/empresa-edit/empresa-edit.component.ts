@@ -10,8 +10,8 @@ import { PoPageDynamicEditActions, PoPageDynamicEditBeforeSave, PoPageDynamicEdi
 export class EmpresaEditComponent{
 
   
-    //public readonly serviceApi = 'https://localhost:7109/Empresas';
-    public readonly serviceApi = 'https://rpa.devplus.com.br/Empresas';
+    //public readonly serviceApi = 'https://localhost:7109/api/v1/empresas';
+    public readonly serviceApi = 'https://rpa.devplus.com.br/api/v1/empresas';
 
     public readonly fields: Array<PoDynamicFormField> = [
         { property: 'id', label: 'ID', divider: 'Dados Gerais', disabled: true, gridColumns: 2},
