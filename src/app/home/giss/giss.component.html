@@ -8,6 +8,13 @@ p-title="Consulta GISS"
 
 </po-page-dynamic-table>
 
-<!-- <po-modal #empresaDetailModal p-title="Detalhes - Empresa">
-    <po-dynamic-view [p-fields]="detailFields" [p-value]="detailedEmpresa"> </po-dynamic-view>
-</po-modal> -->
+<po-modal p-icon="po-icon-archive" p-size ="xl" #filesDetailModal p-title="Arquivos Disponíveis">
+    <span class="po-font-subtitle">Disponiveis para download</span>
+
+    <po-table [p-items]="listFiles" 
+              [p-columns]="fieldsFiles" 
+              [p-actions]="tableFilesCustomActions"
+              [p-actions-right]="true"
+              [p-filtered-columns]="['fileName', 'competence']"
+              > </po-table>
+</po-modal>

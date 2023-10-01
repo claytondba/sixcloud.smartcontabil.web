@@ -1,8 +1,10 @@
-import { Component } from "@angular/core";
+import { Component, ViewChild } from "@angular/core";
 
-import { PoBreadcrumb } from "@po-ui/ng-components";
+import { PoBreadcrumb, PoModalComponent, PoTableAction, PoTableColumn } from "@po-ui/ng-components";
 import { PoPageDynamicTableActions, PoPageDynamicTableCustomTableAction } from "@po-ui/ng-templates";
 import { GissService } from "./giss.service";
+import { SmartSyncService } from "src/app/core/smart-sync/smart-sync.service";
+import { SmartFile } from "src/app/core/smart-sync/smart-file";
 
 @Component({
     selector: 'sixcloud-giss',
@@ -13,10 +15,14 @@ export class GissComponent {
 
     readonly serviceApi = 'https://rpa.devplus.com.br/ConsultaGISS/GissUI';
 
+    @ViewChild('filesDetailModal') filesDetailModal!: PoModalComponent;
+
     readonly breadcrumb: PoBreadcrumb = {
         items: [{ label: 'Home', link: '/home' }, 
                 { label: 'GISS - Fechamentos' }]
     };
+
+    listFiles: any[] = [];
 
     readonly fields: Array<any> = [
         { property: 'id', key: true, visible: false },
@@ -28,16 +34,37 @@ export class GissComponent {
         { property: 'tempo', label: 'Tempo (Seg)' },
         { property: 'instance_name', label: 'RPA' }
       ];
+      readonly fieldsFiles: PoTableColumn[] = [
+        { property: 'tenantId', label: 'tenantId', visible: false },
+        { property: 'tokenProcess', label: 'tokenProcess', visible: false  },
+        { property: 'instanceGenerateName', label: 'instanceGenerateName', visible: false },
+        
+        { property: 'fileName', label: 'Arquivos' },
+        { property: 'fileExtension', label: 'Tipo de Arquivo' },
+        { property: 'competence', label: 'Competência' }
+        
+      ];
       readonly actions: PoPageDynamicTableActions = {
         removeAll: true,
         //edit: '/empresa-edit/:id'
     
     };
+
+
+    tableFilesCustomActions: Array<PoTableAction> = [
+        {
+            label: 'Download',
+            icon: 'po-icon-settings',
+            action: this.downloadFileSmartSync.bind(this),
+
+        }];
+
+
     tableCustomActions: Array<PoPageDynamicTableCustomTableAction> = [
         {
-            label: 'Reprocessar',
-            icon: 'po-icon-settings'
-            //action: this.onClickEmpresaDetail.bind(this),
+            label: 'Verificar Arquivos',
+            icon: 'po-icon-archive',
+            action: this.onClickEmpresaDetail.bind(this),
         },
         {
           label: 'Guia de Prestados',
@@ -67,7 +94,36 @@ export class GissComponent {
         
       ];
 
-      constructor(private gissService: GissService ) { }
+      constructor(private gissService: GissService, 
+                  private smartSyncService: SmartSyncService ) { 
+
+                  }
+
+      onClickEmpresaDetail(giss: any)
+      {
+        //this.filesDetailModal.open();
+            this.smartSyncService.getListFiles(giss.token).subscribe( files => {
+
+                this.listFiles = files;
+                console.log(files);
+                this.filesDetailModal.open();
+
+            });
+            
+      }
+
+      downloadFileSmartSync(file: any)
+      {
+        console.log(file);
+        this.smartSyncService.getFile(file.tokenProcess, file.competence, file.fileName)
+                .subscribe( file => {
+
+                    this.downloadFile(file.fileName + '.' + file.fileExtension, file.fileContent)
+
+                });
+      }
+
+
 
       downloadLivroPrestados(giss: any)
       {

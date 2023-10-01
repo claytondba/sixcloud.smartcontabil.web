@@ -5,7 +5,8 @@ export interface User {
     name: string,
     email: string,
     login: string,
-    id_cliente: number
+    id_cliente: number,
+    tenant_id: string
   
   }
   
