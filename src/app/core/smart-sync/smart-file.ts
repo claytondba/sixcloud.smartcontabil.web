@@ -5,4 +5,5 @@ export interface SmartFile {
     instanceGenerateName: string
     tenantId: string
     tokenProcess: string
+    createdAt: Date
 }

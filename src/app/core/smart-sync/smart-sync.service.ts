@@ -6,8 +6,8 @@ import { Observable } from "rxjs";
 import { User } from "../user/user";
 import { UserService } from "../user/user.service";
 
-//const API = "https://smartsync.devplus.com.br"
-const API = "https://localhost:7169"
+const API = "https://smartsync.devplus.com.br"
+//const API = "https://localhost:7169"
 
 @Injectable({  providedIn: 'root'})
 export class SmartSyncService {

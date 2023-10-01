@@ -41,7 +41,8 @@ export class GissComponent {
         
         { property: 'fileName', label: 'Arquivos' },
         { property: 'fileExtension', label: 'Tipo de Arquivo' },
-        { property: 'competence', label: 'Competência' }
+        { property: 'competence', label: 'Competência' },
+        { property: 'createdAt', label: 'Data Proces.' },
         
       ];
       readonly actions: PoPageDynamicTableActions = {
@@ -54,7 +55,7 @@ export class GissComponent {
     tableFilesCustomActions: Array<PoTableAction> = [
         {
             label: 'Download',
-            icon: 'po-icon-settings',
+            //icon: 'po-icon-settings',
             action: this.downloadFileSmartSync.bind(this),
 
         }];
