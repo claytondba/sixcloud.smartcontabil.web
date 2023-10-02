@@ -25,11 +25,12 @@ export class GissComponent {
     listFiles: any[] = [];
     isLoading = false;
     typeFilter: PoFilterMode = 1;
+    tipoPrefeitura: string = '';
 
     readonly fields: Array<any> = [
         { property: 'cstat', type: 'label', label: 'Status',
         labels: [
-            { value: 100, type: PoTagType.Success, label: 'Disponível' },
+            { value: 100, type: PoTagType.Success, label: 'Finalizado' },
             { value: 10, type: PoTagType.Warning, label: 'Em Processamento' },
             { value: 1, type: PoTagType.Info, label: 'Aguardando' },
             { value: 999, type: PoTagType.Danger, label: 'Não implementado' },
@@ -48,13 +49,13 @@ export class GissComponent {
             { value: '3529401', color: '#745678', label: 'Mauá' },
             { value: '3519071', color: '#745678', label: 'Hortolandia' },
             { value: '3555406', color: '#745678', label: 'Ubatuba' },
-            { value: '3550308', color: '#745678', label: 'SaoPaulo' },
+            { value: '3550308', color: '#745678', label: 'São Paulo' },
             { value: '3522109', color: '#745678', label: 'Itanhaem' },
-            { value: '3524402', color: '#745678', label: 'Jacarei  ' },
-            { value: '3530102', color: '#745678', label: 'Mirandopolis' },
+            { value: '3524402', color: '#745678', label: 'Jacareí' },
+            { value: '3530102', color: '#745678', label: 'Mirandópolis' },
             { value: '3534401', color: '#745678', label: 'Osasco' },
-            { value: '3530607', color: '#745678', label: 'MogiDasCruzes' },
-            { value: '3552809', color: '#745678', label: 'TaboaoDaSerra' }
+            { value: '3530607', color: '#745678', label: 'Mogi das Cruzes' },
+            { value: '3552809', color: '#745678', label: 'Taboão da Serra' }
             
           ]
         },
@@ -136,9 +137,10 @@ export class GissComponent {
       onClickEmpresaDetail(giss: any)
       {
         //this.filesDetailModal.open();
+        this.tipoPrefeitura = giss.cod_ibge_mun;
         this.isLoading = true;
             this.smartSyncService.getListFiles(giss.token).subscribe( files => {
-
+                
                 this.listFiles = files;
                 console.log(files);
                 this.filesDetailModal.open();

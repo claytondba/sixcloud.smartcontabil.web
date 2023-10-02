@@ -1,3 +1,4 @@
+import { HttpClient } from "@angular/common/http";
 import { Component } from "@angular/core";
 import { PoBreadcrumb, PoDynamicFormField } from "@po-ui/ng-components";
 import { PoPageDynamicEditActions, PoPageDynamicEditBeforeSave, PoPageDynamicEditBeforeSaveNew, PoPageDynamicEditLiterals } from "@po-ui/ng-templates";
@@ -168,4 +169,5 @@ export class EmpresaEditComponent{
       public readonly teste2: PoPageDynamicEditBeforeSaveNew = {
         newUrl: 'empresas'
       };
+      
 }

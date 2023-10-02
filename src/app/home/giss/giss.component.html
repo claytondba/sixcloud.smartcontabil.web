@@ -12,7 +12,11 @@ p-title="GISS - Fechamentos"
 </po-page-dynamic-table>
 
 <po-modal p-icon="po-icon-archive" p-size ="xl" #filesDetailModal p-title="Arquivos Disponíveis">
-    <span class="po-font-subtitle">{{listFiles.length}} Arquivos processados.</span>
+    <po-divider
+    p-label="Download de arquivos - SmartSync Storage" >
+    </po-divider>
+    <span class="po-font-subtitle">{{listFiles.length}} Arquivos processados. - {{(tipoPrefeitura)}} </span><br/>
+    <span class="po-font-subtitle">Status de Processamento (100).</span><br/>
 
     <po-table [p-items]="listFiles" 
               [p-columns]="fieldsFiles" 
@@ -23,5 +27,6 @@ p-title="GISS - Fechamentos"
               [p-filter-type]="typeFilter"
               [p-striped]="true"
               [p-sort]="true"
+              
               > </po-table>
 </po-modal>
