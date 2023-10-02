@@ -1,6 +1,6 @@
 import { Component, ViewChild } from "@angular/core";
 
-import { PoBreadcrumb, PoModalComponent, PoTableAction, PoTableColumn } from "@po-ui/ng-components";
+import { PoBreadcrumb, PoFilterMode, PoModalComponent, PoTableAction, PoTableColumn, PoTagType } from "@po-ui/ng-components";
 import { PoPageDynamicTableActions, PoPageDynamicTableCustomTableAction } from "@po-ui/ng-templates";
 import { GissService } from "./giss.service";
 import { SmartSyncService } from "src/app/core/smart-sync/smart-sync.service";
@@ -23,15 +23,48 @@ export class GissComponent {
     };
 
     listFiles: any[] = [];
+    isLoading = false;
+    typeFilter: PoFilterMode = 1;
 
     readonly fields: Array<any> = [
+        { property: 'cstat', type: 'label', label: 'Status',
+        labels: [
+            { value: 100, type: PoTagType.Success, label: 'Disponível' },
+            { value: 10, type: PoTagType.Warning, label: 'Em Processamento' },
+            { value: 1, type: PoTagType.Info, label: 'Aguardando' },
+            { value: 999, type: PoTagType.Danger, label: 'Não implementado' },
+            { value: 8, type: PoTagType.Danger, label: 'Erro' }
+          ]
+        },
+        { property: 'cod_ibge_mun', type: 'label', label: 'Município',
+        labels: [
+            { value: '3547809', color: '#745678', label: 'Santo André' },
+            { value: '3548708', color: '#745678', label: 'São Bernardo' },
+            { value: '3548807', color: '#745678', label: 'São Caetano' },
+            { value: '3513801', color: '#745678', label: 'Diadema' },
+            { value: '3543303', color: '#745678', label: 'Ribeirão Pires' },
+            { value: '3543402', color: '#745678', label: 'Ribeirão Preto' },
+            { value: '3523107', color: '#745678', label: 'Itaquaquecetuba' },
+            { value: '3529401', color: '#745678', label: 'Mauá' },
+            { value: '3519071', color: '#745678', label: 'Hortolandia' },
+            { value: '3555406', color: '#745678', label: 'Ubatuba' },
+            { value: '3550308', color: '#745678', label: 'SaoPaulo' },
+            { value: '3522109', color: '#745678', label: 'Itanhaem' },
+            { value: '3524402', color: '#745678', label: 'Jacarei  ' },
+            { value: '3530102', color: '#745678', label: 'Mirandopolis' },
+            { value: '3534401', color: '#745678', label: 'Osasco' },
+            { value: '3530607', color: '#745678', label: 'MogiDasCruzes' },
+            { value: '3552809', color: '#745678', label: 'TaboaoDaSerra' }
+            
+          ]
+        },
         { property: 'id', key: true, visible: false },
         { property: 'competencia', label: 'Competencia' },
-        { property: 'obrigacao', label: 'Certidão' },
+        { property: 'datahoraemissao',  label: 'Processsamento', type: 'dateTime' },
+        { property: 'obrigacao', label: 'obrigacao', visible: false },
         { property: 'cnpj', label: 'CNPJ' },
-        { property: 'cstat', label: 'Status' },
         { property: 'observacao', label: 'Observacao' },
-        { property: 'tempo', label: 'Tempo (Seg)' },
+        { property: 'tempo', label: 'Tempo (Seg)', visible: false },
         { property: 'instance_name', label: 'RPA' }
       ];
       readonly fieldsFiles: PoTableColumn[] = [
@@ -103,12 +136,13 @@ export class GissComponent {
       onClickEmpresaDetail(giss: any)
       {
         //this.filesDetailModal.open();
+        this.isLoading = true;
             this.smartSyncService.getListFiles(giss.token).subscribe( files => {
 
                 this.listFiles = files;
                 console.log(files);
                 this.filesDetailModal.open();
-
+                this.isLoading = false;
             });
             
       }
@@ -129,8 +163,10 @@ export class GissComponent {
       downloadLivroPrestados(giss: any)
       {
         console.log(giss.id);
+        
             this.gissService.getDocument(giss.id, 'livro-prestados').subscribe(file => {
                 this.downloadFile(giss.cnpj + "-" + giss.competencia + "-livro-prestados.csv", file);
+                
             });
       }
 

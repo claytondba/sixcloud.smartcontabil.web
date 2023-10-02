@@ -1,5 +1,8 @@
+<div>
+    <po-loading-overlay [hidden]="!(isLoading)"></po-loading-overlay>
+</div>
 <po-page-dynamic-table
-p-title="Consulta GISS"
+p-title="GISS - Fechamentos"
 [p-actions]="actions"
 [p-table-custom-actions]="tableCustomActions"
 [p-breadcrumb]="breadcrumb"
@@ -16,5 +19,9 @@ p-title="Consulta GISS"
               [p-actions]="tableFilesCustomActions"
               [p-actions-right]="true"
               [p-filtered-columns]="['fileName', 'competence']"
+              [p-selectable]="true"
+              [p-filter-type]="typeFilter"
+              [p-striped]="true"
+              [p-sort]="true"
               > </po-table>
 </po-modal>
