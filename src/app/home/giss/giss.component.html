@@ -31,6 +31,33 @@ p-title="GISS - Fechamentos"
               > </po-table>
 </po-modal>
 
-<po-modal p-icon="po-icon-refresh" [p-primary-action]="confirm" [p-secondary-action]="close" p-size ="xl" #retryModal p-title="Reprocessamento de Requisição">
-    <span class="po-font-text-large">Deseja realmente reprocessar o registro selecionado?.</span>
+<po-modal p-icon="po-icon-refresh" 
+        [p-primary-action]="confirm" 
+        [p-secondary-action]="close" 
+        #retryModal p-title="Reprocessamento de Requisição">
+
+            <div class="po-row po-p-1">
+                <span class="po-font-text-large-bold">Deseja realmente reprocessar o registro selecionado?</span>
+            </div>
+            
+    
+            <div class="po-row po-p-1">
+                <po-checkbox class="po-sm-12"
+                    (p-change)="acceptance = !acceptance"
+                    p-label="Ativar Reprocessamento Avançado">
+                </po-checkbox>
+            </div>
+      
+            <div class="po-row po-p-1" *ngIf="acceptance">
+                <po-combo class="po-md-12"
+                    name="accompaniment"
+                    [p-options]="listInstances"
+                    p-icon="po-icon-exam"
+                    p-field-label="instance_name"
+                    p-field-value="id"
+                    p-help="Direcione o processamento para uma instância específica do SmartRPA"
+                    p-label="SmartGISS RPA Operator:">
+                </po-combo>
+                </div>
+
 </po-modal>

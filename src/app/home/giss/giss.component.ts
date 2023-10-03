@@ -6,6 +6,8 @@ import { GissService } from "./giss.service";
 import { SmartSyncService } from "src/app/core/smart-sync/smart-sync.service";
 import { SmartFile } from "src/app/core/smart-sync/smart-file";
 import { Giss } from "./giss";
+import { PulseService } from "src/app/core/proc/pulse.service";
+import { Pulse } from "src/app/core/proc/pulse";
 
 @Component({
     selector: 'sixcloud-giss',
@@ -25,10 +27,12 @@ export class GissComponent {
     };
 
     listFiles: any[] = [];
+    listInstances: Pulse[] = [];
     isLoading = false;
     typeFilter: PoFilterMode = 1;
     tipoPrefeitura: string = '';
     gissEdit: Giss | null = null;
+    acceptance: boolean = false;
 
 
     readonly fields: Array<PoPageDynamicTableFilters> = [
@@ -139,7 +143,14 @@ export class GissComponent {
       ];
 
       constructor(private gissService: GissService, 
-                  private smartSyncService: SmartSyncService ) { 
+                  private smartSyncService: SmartSyncService,
+                  private pulseService: PulseService ) { 
+
+        this.pulseService.listOperatorsByService(5).subscribe( operators => {
+
+            this.listInstances = operators;
+            
+        });                    
 
       }
 
@@ -157,39 +168,50 @@ export class GissComponent {
             });
             
       }
+
+
       retryGiss(){
-        console.log(this.gissEdit);
+
+        //console.log(this.gissEdit);
         let token = this.gissEdit?.token as string
-        console.log(token);
+        //console.log(token);
+
         this.gissService.reTry(token).subscribe(x => {
             this.closeModal();
         });
       }
+
       reprocessaRegistro(giss: Giss){
         this.gissEdit = giss;
         this.retryModal.open();
       }
+
+
       close: PoModalAction = {
         action: () => {
-        this.closeModal();
+            this.closeModal();
         },
         label: 'Cancelar',
         danger: true
       };
 
-        confirm: PoModalAction = {
-            action: () => {
+      confirm: PoModalAction = {
+        action: () => {
             this.retryGiss();
-            },
-            label: 'Confirmar'
-        };
+        },
+        label: 'Confirmar'
+    };
 
     closeModal() {
         this.retryModal.close();
         this.gissEdit = null;
     }
 
+    verifyOptions(){
 
+
+
+    }
 
       downloadFileSmartSync(file: any)
       {
