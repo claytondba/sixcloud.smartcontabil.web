@@ -19,12 +19,12 @@ export class GissService {
     getDocument(id: number, typeDoc: string) {
         return this.http.get<Text>(API + '/ConsultaGiss/Document/' + id + "?typeDoc=" + typeDoc);
     }
-    reTry(id: number) {
-        return this.http.get(API + '/ConsultaGiss/Retry/' + id);
+    reTry(token: string) {
+        return this.http.get(API + '/ConsultaGiss/retry/' + token);
     }
     advancedReTry(id: number, instance: number) {
         console.log('intance: ' + instance);
-          return this.http.get(API + '/ConsultaGiss/Retry/' + id + '/' + instance);
+          return this.http.get(API + '/ConsultaGiss/retry/' + id + '/' + instance);
     }
 
 }

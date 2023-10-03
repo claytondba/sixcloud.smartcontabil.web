@@ -1,7 +1,7 @@
 import { Component, ViewChild } from "@angular/core";
 
 import { PoBreadcrumb, PoFilterMode, PoModalComponent, PoTableAction, PoTableColumn, PoTagType } from "@po-ui/ng-components";
-import { PoPageDynamicTableActions, PoPageDynamicTableCustomTableAction } from "@po-ui/ng-templates";
+import { PoPageDynamicTableActions, PoPageDynamicTableCustomTableAction, PoPageDynamicTableFilters } from "@po-ui/ng-templates";
 import { GissService } from "./giss.service";
 import { SmartSyncService } from "src/app/core/smart-sync/smart-sync.service";
 import { SmartFile } from "src/app/core/smart-sync/smart-file";
@@ -27,14 +27,14 @@ export class GissComponent {
     typeFilter: PoFilterMode = 1;
     tipoPrefeitura: string = '';
 
-    readonly fields: Array<any> = [
+    readonly fields: Array<PoPageDynamicTableFilters> = [
         { property: 'cstat', type: 'label', label: 'Status',
         labels: [
-            { value: 100, type: PoTagType.Success, label: 'Finalizado' },
-            { value: 10, type: PoTagType.Warning, label: 'Em Processamento' },
-            { value: 1, type: PoTagType.Info, label: 'Aguardando' },
-            { value: 999, type: PoTagType.Danger, label: 'Não implementado' },
-            { value: 8, type: PoTagType.Danger, label: 'Erro' }
+            { value: 100, type: PoTagType.Success, label: 'Finalizado', icon: 'po-icon-stock' },
+            { value: 10, type: PoTagType.Warning, label: 'Em Processamento', icon: 'po-icon-stock' },
+            { value: 1, type: PoTagType.Info, label: 'Aguardando', icon: 'po-icon-stock' },
+            { value: 999, type: PoTagType.Danger, label: 'Não implementado', icon: 'po-icon-stock' },
+            { value: 8, type: PoTagType.Danger, label: 'Erro', icon: 'po-icon-stock' }
           ]
         },
         { property: 'cod_ibge_mun', type: 'label', label: 'Município',
@@ -60,11 +60,11 @@ export class GissComponent {
           ]
         },
         { property: 'id', key: true, visible: false },
-        { property: 'competencia', label: 'Competencia' },
-        { property: 'datahoraemissao',  label: 'Processsamento', type: 'dateTime' },
+        { property: 'competencia', label: 'Competência' },
+        { property: 'datahoraemissao', label: 'Processsamento', type: 'dateTime' },
         { property: 'obrigacao', label: 'obrigacao', visible: false },
-        { property: 'cnpj', label: 'CNPJ' },
-        { property: 'observacao', label: 'Observacao' },
+        { property: 'cnpj', label: 'CNPJ', type: 'string', format: '99.999.999/9999-99'},
+        { property: 'observacao', label: 'Observação' },
         { property: 'tempo', label: 'Tempo (Seg)', visible: false },
         { property: 'instance_name', label: 'RPA' }
       ];

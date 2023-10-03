@@ -77,11 +77,12 @@ export class EmpresasComponent {
 
       console.log(endpoint);
 
-      this.http.get('https://rpa.devplus.com.br/api/v1/empresas?page=1&pageSize=99999').subscribe((data: any) => {
+      this.http.get('https://rpa.devplus.com.br/api/v1/empresas?page=1&pageSize=99999')
+               .subscribe((data: any) => {
         const csvStr = this.parseJsonToCsv(data['items']);
         const dataUri = 'data:text/csv;charset=utf-8,' + csvStr;
   
-        const exportFileDefaultName = 'data.csv';
+        const exportFileDefaultName = 'smart-empresas.csv';
   
         const linkElement = document.createElement('a');
         linkElement.setAttribute('href', dataUri);
