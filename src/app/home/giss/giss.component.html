@@ -31,6 +31,6 @@ p-title="GISS - Fechamentos"
               > </po-table>
 </po-modal>
 
-<po-modal p-icon="po-icon-archive" p-size ="xl" #retryModal p-title="Arquivos Disponíveis">
-
+<po-modal p-icon="po-icon-refresh" [p-primary-action]="confirm" [p-secondary-action]="close" p-size ="xl" #retryModal p-title="Reprocessamento de Requisição">
+    <span class="po-font-text-large">Deseja realmente reprocessar o registro selecionado?.</span>
 </po-modal>

@@ -1,10 +1,11 @@
 import { Component, ViewChild } from "@angular/core";
 
-import { PoBreadcrumb, PoFilterMode, PoModalComponent, PoTableAction, PoTableColumn, PoTagType } from "@po-ui/ng-components";
+import { PoBreadcrumb, PoFilterMode, PoModalAction, PoModalComponent, PoTableAction, PoTableColumn, PoTagType } from "@po-ui/ng-components";
 import { PoPageDynamicTableActions, PoPageDynamicTableCustomTableAction, PoPageDynamicTableFilters } from "@po-ui/ng-templates";
 import { GissService } from "./giss.service";
 import { SmartSyncService } from "src/app/core/smart-sync/smart-sync.service";
 import { SmartFile } from "src/app/core/smart-sync/smart-file";
+import { Giss } from "./giss";
 
 @Component({
     selector: 'sixcloud-giss',
@@ -16,6 +17,7 @@ export class GissComponent {
     readonly serviceApi = 'https://rpa.devplus.com.br/ConsultaGISS/GissUI';
 
     @ViewChild('filesDetailModal') filesDetailModal!: PoModalComponent;
+    @ViewChild('retryModal') retryModal!: PoModalComponent;
 
     readonly breadcrumb: PoBreadcrumb = {
         items: [{ label: 'Home', link: '/home' }, 
@@ -26,6 +28,8 @@ export class GissComponent {
     isLoading = false;
     typeFilter: PoFilterMode = 1;
     tipoPrefeitura: string = '';
+    gissEdit: Giss | null = null;
+
 
     readonly fields: Array<PoPageDynamicTableFilters> = [
         { property: 'cstat', type: 'label', label: 'Status',
@@ -102,9 +106,14 @@ export class GissComponent {
             action: this.onClickEmpresaDetail.bind(this),
         },
         {
-          label: 'Guia de Prestados',
-          icon: 'po-icon-download',
-          action: this.downloadGuiaPrestados.bind(this),
+            label: 'Reprocessar',
+            icon: 'po-icon-settings',
+            action: this.reprocessaRegistro.bind(this),
+        },
+        {
+            label: 'Guia de Prestados',
+            icon: 'po-icon-download',
+            action: this.downloadGuiaPrestados.bind(this),
         },
         {
             label: 'Livro Prestados',
@@ -132,7 +141,7 @@ export class GissComponent {
       constructor(private gissService: GissService, 
                   private smartSyncService: SmartSyncService ) { 
 
-                  }
+      }
 
       onClickEmpresaDetail(giss: any)
       {
@@ -148,6 +157,39 @@ export class GissComponent {
             });
             
       }
+      retryGiss(){
+        console.log(this.gissEdit);
+        let token = this.gissEdit?.token as string
+        console.log(token);
+        this.gissService.reTry(token).subscribe(x => {
+            this.closeModal();
+        });
+      }
+      reprocessaRegistro(giss: Giss){
+        this.gissEdit = giss;
+        this.retryModal.open();
+      }
+      close: PoModalAction = {
+        action: () => {
+        this.closeModal();
+        },
+        label: 'Cancelar',
+        danger: true
+      };
+
+        confirm: PoModalAction = {
+            action: () => {
+            this.retryGiss();
+            },
+            label: 'Confirmar'
+        };
+
+    closeModal() {
+        this.retryModal.close();
+        this.gissEdit = null;
+    }
+
+
 
       downloadFileSmartSync(file: any)
       {
@@ -160,12 +202,9 @@ export class GissComponent {
                 });
       }
 
-
-
       downloadLivroPrestados(giss: any)
       {
-        console.log(giss.id);
-        
+            console.log(giss.id);
             this.gissService.getDocument(giss.id, 'livro-prestados').subscribe(file => {
                 this.downloadFile(giss.cnpj + "-" + giss.competencia + "-livro-prestados.csv", file);
                 
