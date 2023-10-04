@@ -22,9 +22,9 @@ export class GissService {
     reTry(token: string) {
         return this.http.get(API + '/ConsultaGiss/retry/' + token);
     }
-    advancedReTry(id: number, instance: number) {
+    advancedReTry(token: string, instance: number) {
         console.log('intance: ' + instance);
-          return this.http.get(API + '/ConsultaGiss/retry/' + id + '/' + instance);
+          return this.http.get(API + '/ConsultaGiss/retry/' + token + '/' + instance);
     }
 
 }

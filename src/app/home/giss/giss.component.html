@@ -1,5 +1,5 @@
 <div>
-    <po-loading-overlay [hidden]="!(isLoading)"></po-loading-overlay>
+    <po-loading-overlay [hidden]="!(isLoading)" [p-text]="loadingText" ></po-loading-overlay>
 </div>
 <po-page-dynamic-table
 p-title="GISS - Fechamentos"
@@ -43,15 +43,18 @@ p-title="GISS - Fechamentos"
     
             <div class="po-row po-p-1">
                 <po-checkbox class="po-sm-12"
-                    (p-change)="acceptance = !acceptance"
+                    (p-change)="checkReprocessa($event)"
                     p-label="Ativar Reprocessamento Avançado">
                 </po-checkbox>
             </div>
       
             <div class="po-row po-p-1" *ngIf="acceptance">
-                <po-combo class="po-md-12"
+                <po-combo #selectCombo class="po-md-12"
                     name="accompaniment"
                     [p-options]="listInstances"
+                    [p-filter-mode]="typeComboFilter"
+                    p-placeholder="Selecione um RPA"
+                    [p-required]="true"
                     p-icon="po-icon-exam"
                     p-field-label="instance_name"
                     p-field-value="id"

@@ -1,6 +1,6 @@
 import { Component, ViewChild } from "@angular/core";
 
-import { PoBreadcrumb, PoFilterMode, PoModalAction, PoModalComponent, PoTableAction, PoTableColumn, PoTagType } from "@po-ui/ng-components";
+import { PoBreadcrumb, PoComboComponent, PoComboFilterMode, PoFilterMode, PoModalAction, PoModalComponent, PoNotificationService, PoTableAction, PoTableColumn, PoTagType } from "@po-ui/ng-components";
 import { PoPageDynamicTableActions, PoPageDynamicTableCustomTableAction, PoPageDynamicTableFilters } from "@po-ui/ng-templates";
 import { GissService } from "./giss.service";
 import { SmartSyncService } from "src/app/core/smart-sync/smart-sync.service";
@@ -20,16 +20,19 @@ export class GissComponent {
 
     @ViewChild('filesDetailModal') filesDetailModal!: PoModalComponent;
     @ViewChild('retryModal') retryModal!: PoModalComponent;
+    @ViewChild('selectCombo') selectCombo!: PoComboComponent;
 
     readonly breadcrumb: PoBreadcrumb = {
         items: [{ label: 'Home', link: '/home' }, 
                 { label: 'GISS - Fechamentos' }]
     };
 
+    loadingText: string = 'Carregando...'
     listFiles: any[] = [];
     listInstances: Pulse[] = [];
     isLoading = false;
     typeFilter: PoFilterMode = 1;
+    typeComboFilter: PoComboFilterMode = 1;
     tipoPrefeitura: string = '';
     gissEdit: Giss | null = null;
     acceptance: boolean = false;
@@ -143,6 +146,7 @@ export class GissComponent {
       ];
 
       constructor(private gissService: GissService, 
+                  private poNotification: PoNotificationService,
                   private smartSyncService: SmartSyncService,
                   private pulseService: PulseService ) { 
 
@@ -151,6 +155,18 @@ export class GissComponent {
             this.listInstances = operators;
             
         });                    
+
+      }
+
+      checkReprocessa(event: boolean){
+
+        if(event) {
+            this.acceptance = true;
+        }
+        else {
+            this.acceptance = false;
+        }
+        console.log(event);
 
       }
 
@@ -172,13 +188,39 @@ export class GissComponent {
 
       retryGiss(){
 
-        //console.log(this.gissEdit);
-        let token = this.gissEdit?.token as string
-        //console.log(token);
+        if(this.acceptance)
+        {
+            if(!this.selectCombo.selectedValue)
+            {
+                this.poNotification.error('Informe um RPA ou desmarque a opção de Reprocessamento Avançado');
+                return;
+            }
+        }
 
-        this.gissService.reTry(token).subscribe(x => {
-            this.closeModal();
-        });
+        let token = this.gissEdit?.token as string
+        this.closeModal();
+        //console.log(token);
+        this.loadingText ='Solicitando reprocessamento...';
+        this.isLoading = true;
+
+        if(this.acceptance){
+            
+            this.gissService.advancedReTry(token, this.selectCombo.selectedValue as number).subscribe(x => {
+                this.isLoading = false;
+                this.loadingText ='Carregando';
+                this.poNotification.information('Reprocessamento Avançado GISS Solicitado');
+            });
+
+        }
+        else {
+
+            this.gissService.reTry(token).subscribe(x => {
+                this.isLoading = false;
+                this.loadingText ='Carregando';
+                this.poNotification.information('Reprocessamento GISS Solicitado');
+            });
+        }
+
       }
 
       reprocessaRegistro(giss: Giss){
