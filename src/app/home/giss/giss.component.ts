@@ -75,7 +75,7 @@ export class GissComponent {
         { property: 'datahoraemissao', label: 'Processsamento', type: 'dateTime' },
         { property: 'obrigacao', label: 'obrigacao', visible: false },
         { property: 'cnpj', label: 'CNPJ', type: 'string', format: '99.999.999/9999-99'},
-        { property: 'observacao', label: 'Observação' },
+        { property: 'observacao', label: 'Observação', visible: false },
         { property: 'tempo', label: 'Tempo (Seg)', visible: false },
         { property: 'instance_name', label: 'RPA' }
       ];
@@ -116,39 +116,39 @@ export class GissComponent {
             label: 'Reprocessar',
             icon: 'po-icon-settings',
             action: this.reprocessaRegistro.bind(this),
-        },
-        {
-            label: 'Guia de Prestados',
-            icon: 'po-icon-download',
-            action: this.downloadGuiaPrestados.bind(this),
-        },
-        {
-            label: 'Livro Prestados',
-            icon: 'po-icon-download',
-            action: this.downloadLivroPrestados.bind(this),
-        },
-        {
-            label: 'Livro Tomados',
-            icon: 'po-icon-download',
-            action: this.downloadLivroTomados.bind(this),
-        },
-        {
-            label: 'Guias/Certificados',
-            icon: 'po-icon-download',
-            action: this.downloadGuiaTomados.bind(this),
-        },
-        {
-            label: 'Aceite de Notas',
-            icon: 'po-icon-download'
-            //action: this.onClickEmpresaDetail.bind(this),
-        },
+        }
+        // {
+        //     label: 'Guia de Prestados',
+        //     icon: 'po-icon-download',
+        //     action: this.downloadGuiaPrestados.bind(this),
+        // },
+        // {
+        //     label: 'Livro Prestados',
+        //     icon: 'po-icon-download',
+        //     action: this.downloadLivroPrestados.bind(this),
+        // },
+        // {
+        //     label: 'Livro Tomados',
+        //     icon: 'po-icon-download',
+        //     action: this.downloadLivroTomados.bind(this),
+        // },
+        // {
+        //     label: 'Guias/Certificados',
+        //     icon: 'po-icon-download',
+        //     action: this.downloadGuiaTomados.bind(this),
+        // },
+        // {
+        //     label: 'Aceite de Notas',
+        //     icon: 'po-icon-download'
+        //     //action: this.onClickEmpresaDetail.bind(this),
+        // },
         
       ];
 
       constructor(private gissService: GissService, 
                   private poNotification: PoNotificationService,
                   private smartSyncService: SmartSyncService,
-                  private pulseService: PulseService ) { 
+                  private pulseService: PulseService) { 
 
         this.pulseService.listOperatorsByService(5).subscribe( operators => {
 
@@ -157,7 +157,6 @@ export class GissComponent {
         });                    
 
       }
-
       checkReprocessa(event: boolean){
 
         if(event) {

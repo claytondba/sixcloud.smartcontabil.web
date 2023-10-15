@@ -2,6 +2,7 @@ import { Component } from "@angular/core";
 import { PoBreadcrumb, PoGaugeRanges } from "@po-ui/ng-components";
 import { ServiceStatus } from "./models/service-status";
 import { DashService } from "./dash.service";
+import { Router } from "@angular/router";
 
 @Component({
     selector: 'sixcloud-dash',
@@ -18,7 +19,7 @@ export class DashComponent {
   isLoadingGinfes: boolean = true;
   isLoadingGiss: boolean = true;
 
-  constructor(private dashboardService: DashService){
+  constructor(private dashboardService: DashService, private router: Router){
     this.dashboardService.statusCnd().subscribe( ss => {
       
       this.cndStatus = ss;
@@ -34,6 +35,9 @@ export class DashComponent {
       this.gissStatus = ss;
       this.isLoadingGiss = false;
     });
+  }
+  openGissDetalhes(){
+    this.router.navigate(['giss']);
   }
   public readonly breadcrumb: PoBreadcrumb = {
       items: [

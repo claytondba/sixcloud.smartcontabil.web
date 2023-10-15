@@ -6,7 +6,7 @@ import { Observable } from "rxjs";
 import { User } from "../user/user";
 import { UserService } from "../user/user.service";
 
-const API = "https://smartsync.devplus.com.br"
+const API = "https://smartsync.devplus.com.br/api/v1"
 //const API = "https://localhost:7169"
 
 @Injectable({  providedIn: 'root'})
@@ -15,9 +15,9 @@ export class SmartSyncService {
     user$: Observable<User| null>;
     userInfo: User | null = null;
     userName: string = "";
+
     constructor(private http: HttpClient, private userService: UserService) {
         this.user$ = userService.getUser();
-        //this.isLoggedIn$ = this.userService.isLoggedIn;
         this.user$.subscribe( x => {this.userInfo = x, this.userName = x?.name as string} );
     }
     
@@ -29,7 +29,7 @@ export class SmartSyncService {
         .set('processToken', tokenProcess)
         .set('tenantId', this.userInfo?.tenant_id as string);
         console.log(this.userInfo);
-        return this.http.get<SmartFile[]>(API + '/api/v1/files/get-list-files', { 'headers': headers });
+        return this.http.get<SmartFile[]>(API + '/files/get-list-files', { 'headers': headers });
     }
 
     getFile(tokenProcess: string, competence: string, fileName: string) {
@@ -40,7 +40,7 @@ export class SmartSyncService {
         .set('processToken', tokenProcess)
         .set('tenantId', this.userInfo?.tenant_id as string);
         
-        return this.http.get<SmartFileComplete>(API + '/api/v1/files/get-list-files/' + 
+        return this.http.get<SmartFileComplete>(API + '/files/get-list-files/' + 
                     competence + '/' + fileName, { 'headers': headers });
     }
 }
